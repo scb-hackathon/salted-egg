@@ -53,12 +53,12 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
         type: "template",
         payload: {
           template_type: "button",
-          text: "Try the URL button!",
+          text: "สินค้าชิ้นนี้ราคา 900 บาทนะคะ",
           buttons: [
             {
               type: "web_url",
               url: 'https://howlonguntilprayuthleaves.com',
-              title: `คลิกที่นี่เพื่อจ่าย 900 บาท`,
+              title: `จ่ายเงิน`,
               webview_height_ratio: "full"
             }
           ]
