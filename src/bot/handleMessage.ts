@@ -18,7 +18,9 @@ function Bot(message: ChatMessage): string | object {
   const {text} = message
 
   if (text.includes('กี่บาท')) {
-    return '🏷 ชิ้นนี้ราคา 112 บาทครับ'
+    const price = Math.floor(Math.random() * 1000)
+
+    return `อันนี้ราคา ${price} บาทครับ 🦄`
   }
 
   if (text.includes('จ่าย')) {
