@@ -77,8 +77,11 @@ export async function getDeeplink(amount: number) {
 
   const endpoint = `https://api.partners.scb/partners/sandbox/v2/deeplink/transactions`
 
-  const {data} = await axios.post(endpoint, body, {headers})
-  console.log('>> SCB Deep Link OK!', data)
+  const {data: reqData} = await axios.post(endpoint, body, {headers})
+  const {status, data} = reqData
+  if (status.code !== 1000) throw new Error(status.description)
 
-  return data.deeplinkUrl
+  console.log('>> SCB Deep Link OK!')
+
+  return data
 }
