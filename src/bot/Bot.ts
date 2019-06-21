@@ -35,12 +35,8 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   const {dialogflow} = ctx
 
   if (dialogflow) {
-    const {fulfillmentText, intent, parameters} = dialogflow
+    const {fulfillmentText, parameters} = dialogflow
     const {fields} = parameters
-    const {name, displayName} = intent
-
-    console.log('[💬] Fulfillment Response:', fulfillmentText)
-    console.log(`[💬] Intent: ${displayName} (${name})`)
 
     if (fields.ProductNames) {
       const {stringValue: productName} = fields.ProductNames

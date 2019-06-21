@@ -25,7 +25,14 @@ export async function handleMessage(senderID: string, message: any) {
 
   try {
     const dialogflow = await runDialogflow(text)
-    console.log('>> Dialogflow OK.')
+
+    if (dialogflow) {
+      const {fulfillmentText, intent} = dialogflow
+      const {name, displayName} = intent
+
+      console.log('[💬] Fulfillment Response:', fulfillmentText)
+      console.log(`[💬] Intent: ${displayName} (${name})`)
+    }
 
     const context: BotContext = {
       sender: senderID,
