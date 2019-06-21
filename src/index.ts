@@ -1,5 +1,7 @@
 import 'dotenv/config'
 
+import {PayService} from 'PayService'
+
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
 
@@ -20,13 +22,9 @@ app.configure(express.rest())
 app.use(express.errorHandler())
 
 app.get('/', (_req, res) => {
-  res.send({status: 'OK'})
+  res.send({status: 'OK Then!'})
 })
 
-app.use('/hello', {
-  async find() {
-    return "Hello, World!"
-  }
-})
+app.use('/pay', new PayService())
 
 app.listen(PORT)
