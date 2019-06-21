@@ -42,6 +42,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     return 'https://howlonguntilprayuthleaves.com'
   }
 
+  if (text.includes('/ssj')) {
+    return requestToPay(112)
+  }
+
   if (text.includes('/pay')) {
     const payAmountRegex = /\/pay (\d+)/
     const amountText = match(payAmountRegex, text)
@@ -61,14 +65,25 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
   }
 
   if (text.includes('จ่าย')) {
-    const product: Product = db.get('cart').find({buyer: ctx.sender}).value()
-    if (!product) return `ซื้ออะไรก่อนดีมั้ยเอ่ย?`
+    const products: Cart[] = db.get('cart').value()
+    if (!products) return `ซื้ออะไรก่อนดีมั้ยเอ่ย?`
 
-    const {name, price} = product
+    const list = products.filter(p => p.buyer === ctx.sender)
+    const count = list.length
+    const totalPrice = list.map(x => x.price).reduce((x, y) => x + y, 0)
 
-    console.log(`>> Items in cart: ${name} (${price} THB)`)
+    // const {name, price} = products
+    // console.log(`>> Items in cart: ${name} (${price} THB)`)
 
-    return requestToPay(price)
+    await ctx.reply(`ตอนนี้คุณมี ${count} อย่างในตระกร้า รวมกัน ${totalPrice} บาทครับ`)
+
+    for (let index in list) {
+      const product = list[index]
+
+      await ctx.reply(`${index}) ${product.name} - ราคา ${product.price} บาท`)
+    }
+
+    return requestToPay(totalPrice)
   }
 
   const dialogflow = await runDialogflow(text)
