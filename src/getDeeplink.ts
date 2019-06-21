@@ -30,6 +30,8 @@ async function authenticate(): Promise<any> {
   const {status, data} = await axios.post(endpoint, body, {headers})
   console.log('>> SCB Authentication OK!')
 
+  console.log('Status Code =', status)
+
   if (status.code != 1000) {
     throw new Error('Authentication Failed!')
   }
