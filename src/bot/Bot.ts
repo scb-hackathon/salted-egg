@@ -48,7 +48,23 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
     success(`[🦄] Deep Link: ${deeplinkUrl}`)
     debug(`> Transaction = ${transactionId} | User Ref = ${userRefId}`)
 
-    return `คลิ๊กที่นี่เพื่อจ่ายเล้ย: ${deeplinkUrl}`
+    return {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "button",
+          text: "Try the URL button!",
+          buttons: [
+            {
+              type: "web_url",
+              url: 'https://howlonguntilprayuthleaves.com',
+              title: `คลิกที่นี่เพื่อจ่าย 900 บาท`,
+              webview_height_ratio: "full"
+            }
+          ]
+        }
+      }
+    }
   }
 
   const dialogflow = await runDialogflow(text)

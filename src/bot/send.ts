@@ -20,6 +20,8 @@ export async function send(sender: string, response: any) {
       message: response,
     }
 
+    console.log(payload)
+
     if (response.text) {
       console.log(`[🦄] Replying: ${response.text}`)
     } else {
@@ -27,7 +29,7 @@ export async function send(sender: string, response: any) {
     }
 
     // Send the HTTP request to the Messenger Platform
-    const endpoint = 'https://graph.facebook.com/v2.6/me/messages'
+    const endpoint = 'https://graph.facebook.com/v3.3/me/messages'
 
     await axios.post(endpoint, payload, {
       params: {access_token: PAGE_ACCESS_TOKEN}
