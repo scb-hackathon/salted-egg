@@ -4,6 +4,7 @@ import {PayService} from 'PayService'
 
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
+import {WebhookService} from 'WebhookService'
 
 const {PORT} = process.env
 
@@ -26,5 +27,6 @@ app.get('/', (_req, res) => {
 })
 
 app.use('/pay', new PayService())
+app.use('/webhook', new WebhookService())
 
 app.listen(PORT)

@@ -926,6 +926,13 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
+"@types/feathersjs__errors@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@types/feathersjs__errors/-/feathersjs__errors-3.3.1.tgz#db13f0c3a24a3b57e23280388fd95e950fd9da9c"
+  integrity sha512-5XeYdEVpDhukpRyAie6At81kY5XMMNt55jwlw/LnAkhO75aUKy/EYWP9WKsWcF2TQYy0GLzrkyjgayK/vG5SrA==
+  dependencies:
+    "@types/express" "*"
+
 "@types/feathersjs__express@*", "@types/feathersjs__express@^1.1.6":
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/@types/feathersjs__express/-/feathersjs__express-1.1.6.tgz#fc24b54e0d5cf5c2e241ceaf9d8d206ee1825b5e"
