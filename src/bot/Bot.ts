@@ -1,7 +1,7 @@
 import {QueryResult} from 'dialogflow'
 import {runDialogflow} from 'bot/runDialogflow'
 
-import {db, Item} from 'db'
+import {Cart, db, Product} from 'db'
 import {requestToPay} from 'bot/requestToPay'
 import {handleDialogflow} from 'bot/handleDialogflow'
 
@@ -43,34 +43,38 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
   }
 
   if (text.includes('/pay')) {
-    return requestToPay(text)
+    const payAmountRegex = /\/pay (\d+)/
+    const amountText = match(payAmountRegex, text)
+    const amount = parseInt(amountText || '100', 10)
+
+    return requestToPay(amount)
+  }
+
+  if (text.includes('กี่บาท')) {
+    const name = getItemName(text)
+    const price = Math.floor(Math.random() * 1000)
+    const item: Cart = {name, price, buyer: ctx.sender}
+
+    db.get('cart').push(item).write()
+
+    return `${name}ราคา ${price} บาทครับ 🦄`
+  }
+
+  if (text.includes('จ่าย')) {
+    const product: Product = db.get('cart').find({buyer: ctx.sender}).value()
+    if (!product) return `ซื้ออะไรก่อนดีมั้ยเอ่ย?`
+
+    const {name, price} = product
+
+    console.log(`>> Items in cart: ${name} (${price} THB)`)
+
+    return requestToPay(price)
   }
 
   const dialogflow = await runDialogflow(text)
 
   const response = handleDialogflow(dialogflow)
   if (response) return response
-
-  if (text.includes('กี่บาท')) {
-    const name = getItemName(text)
-    const price = Math.floor(Math.random() * 1000)
-    const item: Item = {name, price}
-
-    db.get('cart.' + ctx.sender).push(item).write()
-
-    return `${name}ราคา ${price} บาทครับ 🦄`
-  }
-
-  if (text.includes('จ่าย')) {
-    const items: Item[] = db.get('cart.' + ctx.sender).value()
-    if (items.length < 1) {
-      return `เอ๊ะ จะซื้ออะไรนะ ขออีกรอบได้มั้ยอ่า 🦄`
-    }
-
-    const {name, price} = items[0]
-
-    return `ซื้อ${name} ราคา ${price} กดที่ลิ้งค์นี้เบย: pay.scb/phoomparin/${price}`
-  }
 
   return `🦄 คุณส่งข้อความมาว่า: ${text} ใช่มั้ย?`
 }

@@ -1,13 +1,8 @@
-import {match} from 'bot/Bot'
 import {success} from 'bot/send'
 import {debug} from 'WebhookService'
 import {getDeeplink} from 'getDeeplink'
 
-export async function requestToPay(text: string) {
-  const payAmountRegex = /\/pay (\d+)/
-  const amountText = match(payAmountRegex, text)
-  const amount = parseInt(amountText || '100', 10)
-
+export async function requestToPay(amount: number) {
   const deeplink = await getDeeplink(amount)
   const {deeplinkUrl, transactionId, userRefId} = deeplink
 
