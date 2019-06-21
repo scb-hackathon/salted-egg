@@ -33,7 +33,7 @@ export async function send(sender: string, response: any) {
       params: {access_token: PAGE_ACCESS_TOKEN}
     })
 
-    success('[✅ ] Reply Request is sent!')
+    success('[💖] Reply Request is sent!')
   } catch (err) {
     if (err.response) {
       const {data} = err.response
