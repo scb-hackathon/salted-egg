@@ -27,14 +27,14 @@ async function authenticate(): Promise<any> {
 
   const endpoint = 'https://api.partners.scb/partners/sandbox/v1/oauth/token'
 
-  const {status, data} = await axios.post(endpoint, body, {headers})
-  console.log('>> SCB Authentication OK!')
-
-  console.log('Status Code =', status)
+  const {data: reqData} = await axios.post(endpoint, body, {headers})
+  const {status, data} = reqData
 
   if (status.code != 1000) {
     throw new Error('Authentication Failed!')
   }
+
+  console.log('>> SCB Authentication OK!')
 
   return data
 }
@@ -78,7 +78,7 @@ export async function getDeeplink(amount: number) {
   const endpoint = `https://api.partners.scb/partners/sandbox/v2/deeplink/transactions`
 
   const {data} = await axios.post(endpoint, body, {headers})
-  console.log('>> SCB Deep Link OK!')
+  console.log('>> SCB Deep Link OK!', data)
 
   return data.deeplinkUrl
 }
