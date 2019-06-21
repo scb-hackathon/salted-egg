@@ -16,14 +16,22 @@ export type Cart = {
   buyer: string
 } & Product
 
+export interface DeepLink {
+  sender: string,
+  transactionId: string,
+  userRef: string
+}
+
 export interface Database {
   cart: Cart[],
-  stock: Product[]
+  stock: Product[],
+  deepLink: DeepLink[]
 }
 
 const dbDefaults: Database = {
   cart: [],
-  stock: []
+  stock: [],
+  deepLink: []
 }
 
 db.defaults(dbDefaults).write()

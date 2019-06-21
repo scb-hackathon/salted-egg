@@ -39,12 +39,14 @@ function getItemName(text: string) {
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
 
+  const rtp = (amount: number) => requestToPay(amount, ctx.sender)
+
   if (text.includes('/prayuth')) {
     return 'https://howlonguntilprayuthleaves.com'
   }
 
   if (text.includes('/ssj')) {
-    return requestToPay(112)
+    return rtp(112)
   }
 
   if (text.includes('/pay')) {
@@ -52,7 +54,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     const amountText = match(payAmountRegex, text)
     const amount = parseInt(amountText || '100', 10)
 
-    return requestToPay(amount)
+    return rtp(amount)
   }
 
   if (text.includes('/receipt')) {
@@ -92,10 +94,9 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     }
 
     const receipt = buildReceipt(list)
-
     await ctx.reply(receipt)
 
-    return requestToPay(totalPrice)
+    return rtp(totalPrice)
   }
 
   const dialogflow = await runDialogflow(text)

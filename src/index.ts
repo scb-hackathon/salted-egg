@@ -7,7 +7,12 @@ import express from '@feathersjs/express'
 import {WebhookService} from 'WebhookService'
 import {Request, Response} from 'express'
 import {FeathersError} from '@feathersjs/errors'
-import {PaymentRedirectHTML} from 'PaymentRedirectHTML.ts'
+
+import {PaymentRedirectHTML} from 'PaymentRedirectHTML'
+import {PaymentCallbackHTML} from 'PaymentCallbackHTML'
+import {match} from 'bot/Bot'
+import {db, DeepLink} from 'db'
+import {send} from 'bot/send'
 
 const {PORT} = process.env
 
@@ -37,6 +42,37 @@ app.get('/redirect', (req: Request, res: Response) => {
   // res.setHeader('Location', decoded)
   // res.status(302)
   res.send(PaymentRedirectHTML.replace('{{DECODED}}', decoded))
+})
+
+app.get('/deep_callback', async (req: Request, res: Response) => {
+  const {query} = req
+
+  const status = match(/\?status=(\w+)/, query.ref)
+  const deepLink: DeepLink = db.get('deepLink').find({transactionId: query.txn}).write()
+  const {sender} = deepLink
+
+  const htmlResponse = PaymentCallbackHTML
+    .replace("{{STATUS}}", status)
+
+  const prayuthThankYou = 'https://s1.reutersmedia.net/resources/r/?m=02&d=20150915&t=2&i=1079446612&r=LYNXNPEB8E05A&w=1280'
+
+  send(sender, {
+    'attachment': {
+      'type': 'template',
+      'payload': {
+        'template_type': 'generic',
+        'elements': [
+          {
+            'title': `ประยุทธ์ขอบคุณคับ เจริญๆ นะหลานเอ้ย`,
+            'image_url': prayuthThankYou,
+            'subtitle': `ในที่สุดก็จ่ายสักที รอมาห้าปีแล้ว`,
+          },
+        ],
+      },
+    },
+  })
+
+  res.send(htmlResponse)
 })
 
 // Set up an error handler that gives us nicer errors

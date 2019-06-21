@@ -209,3 +209,4 @@ typings/
 
 build
 service-account.json
+db.json
