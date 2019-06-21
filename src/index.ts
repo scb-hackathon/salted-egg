@@ -28,9 +28,6 @@ app.get('/', (_req, res) => {
 app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
 
-const {VERIFY_TOKEN} = process.env
-console.log('VT =', VERIFY_TOKEN)
-
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler({
   json(error: FeathersError, req: Request, res: Response, next) {
