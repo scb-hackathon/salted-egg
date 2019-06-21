@@ -1,14 +1,15 @@
 import {QueryResult} from 'dialogflow'
-import {runDialogflow} from 'runDialogflow'
+import {runDialogflow} from 'bot/runDialogflow'
 
 import {db, Item} from 'db'
 import {requestToPay} from 'bot/requestToPay'
+import {handleDialogflow} from 'bot/handleDialogflow'
 
 interface ChatMessage {
   text: string
 }
 
-type BotResponse = string | object
+export type BotResponse = string | object
 
 export interface BotContext {
   sender: string
@@ -32,25 +33,6 @@ function getItemName(text: string) {
   const priceRegex = /ราคา/g
 
   return item.replace(priceRegex, '')
-}
-
-export function handleDialogflow(dialogflow: QueryResult | null): BotResponse | false {
-  if (!dialogflow) return false
-
-  const {fulfillmentText, parameters} = dialogflow
-  const {fields} = parameters
-
-  if (fields.ProductNames) {
-    const {stringValue: productName} = fields.ProductNames
-
-    if (Math.random() > 0.9) {
-      return `${productName}หมดแล้วค่ะ ขอโทษด้วยนะคะ`
-    }
-  }
-
-  if (fulfillmentText) return fulfillmentText
-
-  return false
 }
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {

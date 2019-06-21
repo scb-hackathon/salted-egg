@@ -26,12 +26,12 @@ export class WebhookService {
     throw new errors.Forbidden()
   }
 
-  async create(payload) {
+  async create(payload: any) {
     const {object, entry} = payload
 
     // Checks this is an event from a page subscription
     if (object === 'page') {
-      entry.forEach(item => {
+      entry.forEach((item: any) => {
         const event = item.messaging[0]
         const senderID = event.sender.id
 
@@ -53,6 +53,8 @@ export class WebhookService {
 
           return handlePostback(senderID, postback)
         }
+
+        return
       })
 
       return 'EVENT_RECEIVED'
