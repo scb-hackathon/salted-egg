@@ -1,7 +1,7 @@
-ARG APP_PATH=/opt/app/
+ARG APP_PATH=/opt/app
 
 FROM node:12.4-alpine AS build
-WORKDIR $APP_PATH
+WORKDIR /opt/app
 COPY package.json ./
 COPY yarn.lock ./
 COPY src .
