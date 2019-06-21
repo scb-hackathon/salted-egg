@@ -7,7 +7,6 @@ import express from '@feathersjs/express'
 import {WebhookService} from 'WebhookService'
 import {Request, Response} from 'express'
 import {FeathersError} from '@feathersjs/errors'
-import {DialogflowService} from 'DialogflowService'
 
 const {PORT} = process.env
 

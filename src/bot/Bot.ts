@@ -1,5 +1,6 @@
 import {db, Item} from 'db'
 import {dialogflow} from 'googleapis/build/src/apis/dialogflow'
+import {matchIntent} from 'dialogflow'
 
 interface ChatMessage {
   text: string
@@ -31,7 +32,8 @@ function getItemName(text: string) {
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string | object> {
   const {text} = message
 
-  const intent = await dialogflow()
+  const intent = await matchIntent(message.text)
+  console.log('Intent =', intent)
 
   if (text.includes('กี่บาท')) {
     const name = getItemName(text)

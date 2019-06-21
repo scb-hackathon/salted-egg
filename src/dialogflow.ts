@@ -6,7 +6,7 @@ const PROJECT_ID = 'sellerbot-th1'
 /**
  * Send a query to the dialogflow agent, and return the query result.
  */
-async function getIntent(text: string) {
+export async function matchIntent(text: string) {
   // A unique identifier for the given session
   const sessionId = uuid.v4()
 
