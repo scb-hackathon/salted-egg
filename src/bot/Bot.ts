@@ -34,6 +34,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   const {text} = message
   const {dialogflow} = ctx
 
+  if (text.includes('/prayuth')) {
+    return 'https://howlonguntilprayuthleaves.com'
+  }
+
   if (dialogflow) {
     const {fulfillmentText, parameters} = dialogflow
     const {fields} = parameters
