@@ -2,7 +2,7 @@ import {send} from './send'
 
 function createReply(sid: string) {
   return function reply(response: string | object) {
-    if (response === 'string') {
+    if (typeof response === 'string') {
       return send(sid, {text: response})
     }
 
