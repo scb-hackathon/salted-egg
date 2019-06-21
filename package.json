@@ -33,6 +33,7 @@
   "dependencies": {
     "@feathersjs/feathers": "^3.3.1",
     "@line/bot-sdk": "^6.7.1",
+    "@types/feathersjs__feathers": "^3.1.5",
     "@types/ramda": "^0.26.9",
     "axios": "^0.19.0",
     "backpack-core": "^0.8.3",

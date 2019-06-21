@@ -1,7 +1,12 @@
 import 'dotenv/config'
 
-async function main() {
+import feathers from '@feathersjs/feathers'
 
-}
+export const app = feathers()
 
-main()
+app.use('/hello', {
+  async find() {
+    return "Hello, World!"
+  }
+})
+
