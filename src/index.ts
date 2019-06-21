@@ -29,7 +29,11 @@ app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
 
 app.get('/redirect', (req: Request, res: Response) => {
-  return res.redirect(req.query.url)
+  console.log('> Redirecting to:', req.query.url)
+
+  res.setHeader('Location', req.query.url)
+  res.status(301)
+  res.send('<h1>REDIRECT</h1>')
 })
 
 // Set up an error handler that gives us nicer errors

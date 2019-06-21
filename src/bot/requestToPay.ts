@@ -29,7 +29,7 @@ export async function requestToPay(text: string) {
             type: 'web_url',
             url,
             title: `จ่ายเงิน`,
-            webview_height_ratio: 'full',
+            webview_height_ratio: 'compact',
           },
         ],
       },
