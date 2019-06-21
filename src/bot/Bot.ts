@@ -3,6 +3,8 @@ import {runDialogflow} from 'runDialogflow'
 
 import {db, Item} from 'db'
 import {getDeeplink} from 'getDeeplink'
+import {debug} from 'WebhookService'
+import {success} from 'bot/send'
 
 interface ChatMessage {
   text: string
@@ -43,7 +45,8 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
     const deeplink = await getDeeplink(9000)
     const {deeplinkUrl, transactionId, userRefId} = deeplink
 
-    console.log('>> Deep Link =', deeplinkUrl, '| Transaction =', transactionId, '| User Ref =', userRefId)
+    success(`[🦄] Deep Link: ${deeplinkUrl}`)
+    debug(`> Transaction = ${transactionId} | User Ref = ${userRefId}`)
 
     return `คลิ๊กที่นี่เพื่อจ่ายเล้ย: ${deeplinkUrl}`
   }

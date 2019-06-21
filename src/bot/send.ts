@@ -6,7 +6,7 @@ import chalk from 'chalk'
 // Your verify token. Should be a random string.
 const {PAGE_ACCESS_TOKEN} = process.env
 
-function success(text: string, ...args: any[]) {
+export function success(text: string, ...args: any[]) {
   console.info(chalk.green(chalk.bold(text)), ...args)
 }
 
