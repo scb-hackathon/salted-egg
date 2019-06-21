@@ -17,6 +17,10 @@ app.configure(express.rest())
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler())
 
+app.get('/', (req, res) => {
+  res.send({status: 'OK'})
+})
+
 app.use('/hello', {
   async find() {
     return "Hello, World!"
