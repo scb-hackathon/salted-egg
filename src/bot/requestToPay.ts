@@ -19,17 +19,28 @@ export async function requestToPay(text: string) {
   debug('Redirect URL =', url)
 
   return {
-    attachment: {
-      type: 'template',
-      payload: {
-        template_type: 'button',
-        text: `สินค้าชิ้นนี้ราคา ${amount} บาทนะคะ`,
-        buttons: [
+    'attachment': {
+      'type': 'template',
+      'payload': {
+        'template_type': 'generic',
+        'elements': [
           {
-            type: 'web_url',
-            url,
-            title: `จ่ายเงิน`,
-            webview_height_ratio: 'compact',
+            'title': 'จ่ายเร็ว ลุงตู่รออยู่',
+            'image_url': 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F7821b17e-28f5-11e4-8b81-00144feabdc0?fit=scale-down&source=next&width=700',
+            'subtitle': `ติดเงินลุงไว้ ${amount} บาทนะ ไม่จ่ายเดี๋ยวตามไปทวงความสุขถึงบ้าน`,
+            'default_action': {
+              'type': 'web_url',
+              url,
+              'webview_height_ratio': 'compact',
+            },
+            'buttons': [
+              {
+                'type': 'web_url',
+                'url': url,
+                'title': 'จ่ายเงิน',
+                'webview_height_ratio': 'compact',
+              },
+            ],
           },
         ],
       },
