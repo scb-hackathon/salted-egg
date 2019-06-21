@@ -18,11 +18,9 @@ export class WebhookService {
     const token = query['hub.verify_token'];
     const challenge = query['hub.challenge'];
 
-    console.log('> FIND', query)
-
     if (mode && token) {
       if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-        console.log('>> Challenge Accepted!')
+        console.log('>> Challenge Accepted:', challenge)
 
         return challenge
       }

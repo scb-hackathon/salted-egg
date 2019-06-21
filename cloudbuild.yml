@@ -1,0 +1,13 @@
+steps:
+# build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia.gcr.io/phoomparin/promptpal', '.']
+# push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'asia.gcr.io/phoomparin/promptpal']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'thaksin', '--image', 'asia.gcr.io/phoomparin/promptpal', '--region', 'us-central1']
+
+images:
+- asia.gcr.io/phoomparin/thaksin

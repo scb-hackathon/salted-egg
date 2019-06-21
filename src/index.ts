@@ -5,6 +5,8 @@ import {PayService} from 'PayService'
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
 import {WebhookService} from 'WebhookService'
+import {Request, Response} from 'express'
+import {FeathersError} from '@feathersjs/errors'
 
 const {PORT} = process.env
 
@@ -26,7 +28,17 @@ app.get('/', (_req, res) => {
 app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
 
+const {VERIFY_TOKEN} = process.env
+console.log('VT =', VERIFY_TOKEN)
+
 // Set up an error handler that gives us nicer errors
-app.use(express.errorHandler())
+app.use(express.errorHandler({
+  json(error: FeathersError, req: Request, res: Response, next) {
+    console.error('[!!] Error:', error.code, error.name)
+
+    res.sendStatus(error.code)
+    next()
+  }
+}))
 
 app.listen(PORT)
