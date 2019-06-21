@@ -15,16 +15,22 @@ export async function handleMessage(senderID: string, message: any) {
   const reply = createReply(senderID)
   if (!text) return
 
-  console.log(`>> Handling Message: ${text} from ${senderID}...`)
+  try {
+    console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
-  if (text.includes('กี่บาท')) {
-    return reply('🏷 ชิ้นนี้ราคา 112 บาทครับ')
+    if (text.includes('กี่บาท')) {
+      return reply('🏷 ชิ้นนี้ราคา 112 บาทครับ')
+    }
+
+    if (text.includes('จ่าย')) {
+      return reply('กดที่ลิ้งค์นี้เบย: pay.scb/phoomparin/112')
+    }
+
+    return reply(`🦄 You sent a message: ${text}!`)
+  } catch (error) {
+    console.error('[🔥] Something weird happened:', error.message)
+
+    return reply(`🦄 รอสักครู่นะคะ`)
   }
-
-  if (text.includes('จ่าย')) {
-    return reply('กดที่ลิ้งค์นี้เบย: pay.scb/phoomparin/112')
-  }
-
-  return reply(`🦄 You sent a message: ${text}!`)
 }
 
