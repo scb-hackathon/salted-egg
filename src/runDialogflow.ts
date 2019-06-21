@@ -39,7 +39,17 @@ export async function runDialogflow(text: string): Promise<QueryResult | null> {
       console.log('[??] Dialogflow Intents:', results.length)
     }
 
-    return results[0]
+    const [result] = results
+
+    if (result) {
+      const {fulfillmentText, intent} = result
+      const {name, displayName} = intent
+
+      console.log('[💬] Fulfillment Response:', fulfillmentText)
+      console.log(`[💬] Intent: ${displayName} (${name})`)
+    }
+
+    return result
   } catch (error) {
     wtf('Error happened on Dialogflow:', error.message)
 

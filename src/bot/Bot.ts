@@ -1,4 +1,5 @@
 import {QueryResult} from 'dialogflow'
+import {runDialogflow} from 'runDialogflow'
 
 import {db, Item} from 'db'
 
@@ -32,11 +33,12 @@ function getItemName(text: string) {
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string | object> {
   const {text} = message
-  const {dialogflow} = ctx
 
   if (text.includes('/prayuth')) {
     return 'https://howlonguntilprayuthleaves.com'
   }
+
+  const dialogflow = await runDialogflow(text)
 
   if (dialogflow) {
     const {fulfillmentText, parameters} = dialogflow

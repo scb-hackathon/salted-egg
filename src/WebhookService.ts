@@ -12,7 +12,7 @@ export interface ServiceOption {
   query: ServiceQuery
 }
 
-function debug(name: string, ...args: any[]) {
+export function debug(name: string, ...args: any[]) {
   console.debug(chalk.grey(name), ...args)
 }
 
