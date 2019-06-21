@@ -1,0 +1,567 @@
+{
+ "kind": "customsearch#search",
+ "url": {
+  "type": "application/json",
+  "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+ },
+ "queries": {
+  "request": [
+   {
+    "title": "Google Custom Search - Phoomparin Mano",
+    "totalResults": "693",
+    "searchTerms": "Phoomparin Mano",
+    "count": 10,
+    "startIndex": 1,
+    "inputEncoding": "utf8",
+    "outputEncoding": "utf8",
+    "safe": "off",
+    "cx": "013727940233179543739:ktcdnlx2_pg"
+   }
+  ],
+  "nextPage": [
+   {
+    "title": "Google Custom Search - Phoomparin Mano",
+    "totalResults": "693",
+    "searchTerms": "Phoomparin Mano",
+    "count": 10,
+    "startIndex": 11,
+    "inputEncoding": "utf8",
+    "outputEncoding": "utf8",
+    "safe": "off",
+    "cx": "013727940233179543739:ktcdnlx2_pg"
+   }
+  ]
+ },
+ "context": {
+  "title": "Phoom"
+ },
+ "searchInformation": {
+  "searchTime": 0.472808,
+  "formattedSearchTime": "0.47",
+  "totalResults": "693",
+  "formattedTotalResults": "693"
+ },
+ "items": [
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano: For The Love Of Web Assembly - Lightning Talk ...",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e: For The Love Of Web Assembly - Lightning Talk ...",
+   "link": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+   "displayLink": "www.youtube.com",
+   "snippet": "Feb 20, 2018 ... Phoomparin gives a short intro to React-Rust: https://github.com/phoomparin/\nreact-rust Lightning Talks are 5 minute segments during which ...",
+   "htmlSnippet": "Feb 20, 2018 \u003cb\u003e...\u003c/b\u003e \u003cb\u003ePhoomparin\u003c/b\u003e gives a short intro to React-Rust: https://github.com/\u003cb\u003ephoomparin\u003c/b\u003e/\u003cbr\u003e\nreact-rust Lightning Talks are 5 minute segments during which&nbsp;...",
+   "cacheId": "t9uiq7EIi5EJ",
+   "formattedUrl": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+   "htmlFormattedUrl": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "300",
+      "height": "168",
+      "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSavjpTVkqoCONdSlxhc2bx4TxuIaZq-7kLUdAMatAEhGpvsQ4NRpCuYEYV"
+     }
+    ],
+    "metatags": [
+     {
+      "title": "Phoomparin Mano: For The Love Of Web Assembly - Lightning Talk - JSConf.Asia 2018",
+      "theme-color": "#ff0000",
+      "og:site_name": "YouTube",
+      "og:url": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+      "og:title": "Phoomparin Mano: For The Love Of Web Assembly - Lightning Talk - JSConf.Asia 2018",
+      "og:image": "https://i.ytimg.com/vi/-2iJG0FVGaY/maxresdefault.jpg",
+      "og:description": "Phoomparin gives a short intro to React-Rust: https://github.com/phoomparin/react-rust Lightning Talks are 5 minute segments during which interested members ...",
+      "al:ios:app_store_id": "544007664",
+      "al:ios:app_name": "YouTube",
+      "al:ios:url": "vnd.youtube://www.youtube.com/watch?v=-2iJG0FVGaY&feature=applinks",
+      "al:android:url": "vnd.youtube://www.youtube.com/watch?v=-2iJG0FVGaY&feature=applinks",
+      "al:android:app_name": "YouTube",
+      "al:android:package": "com.google.android.youtube",
+      "al:web:url": "https://www.youtube.com/watch?v=-2iJG0FVGaY&feature=applinks",
+      "og:type": "video.other",
+      "og:video:url": "https://www.youtube.com/embed/-2iJG0FVGaY",
+      "og:video:secure_url": "https://www.youtube.com/embed/-2iJG0FVGaY",
+      "og:video:type": "text/html",
+      "og:video:width": "1280",
+      "og:video:height": "720",
+      "og:video:tag": "WebAssembly",
+      "fb:app_id": "87741124305",
+      "twitter:card": "player",
+      "twitter:site": "@youtube",
+      "twitter:url": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+      "twitter:title": "Phoomparin Mano: For The Love Of Web Assembly - Lightning Talk - JSConf.Asia 2018",
+      "twitter:description": "Phoomparin gives a short intro to React-Rust: https://github.com/phoomparin/react-rust Lightning Talks are 5 minute segments during which interested members ...",
+      "twitter:image": "https://i.ytimg.com/vi/-2iJG0FVGaY/maxresdefault.jpg",
+      "twitter:app:name:iphone": "YouTube",
+      "twitter:app:id:iphone": "544007664",
+      "twitter:app:name:ipad": "YouTube",
+      "twitter:app:id:ipad": "544007664",
+      "twitter:app:url:iphone": "vnd.youtube://www.youtube.com/watch?v=-2iJG0FVGaY&feature=applinks",
+      "twitter:app:url:ipad": "vnd.youtube://www.youtube.com/watch?v=-2iJG0FVGaY&feature=applinks",
+      "twitter:app:name:googleplay": "YouTube",
+      "twitter:app:id:googleplay": "com.google.android.youtube",
+      "twitter:app:url:googleplay": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+      "twitter:player": "https://www.youtube.com/embed/-2iJG0FVGaY",
+      "twitter:player:width": "1280",
+      "twitter:player:height": "720"
+     }
+    ],
+    "videoobject": [
+     {
+      "url": "https://www.youtube.com/watch?v=-2iJG0FVGaY",
+      "name": "Phoomparin Mano: For The Love Of Web Assembly - Lightning Talk - JSConf.Asia 2018",
+      "description": "Phoomparin gives a short intro to React-Rust: https://github.com/phoomparin/react-rust Lightning Talks are 5 minute segments during which interested members ...",
+      "paid": "False",
+      "channelid": "UCzoVCacndDCfGDf41P-z0iA",
+      "videoid": "-2iJG0FVGaY",
+      "duration": "PT5M32S",
+      "unlisted": "False",
+      "thumbnailurl": "https://i.ytimg.com/vi/-2iJG0FVGaY/maxresdefault.jpg",
+      "embedurl": "https://www.youtube.com/embed/-2iJG0FVGaY",
+      "playertype": "HTML5 Flash",
+      "width": "1280",
+      "height": "720",
+      "isfamilyfriendly": "True",
+      "regionsallowed": "AD,AE,AF,AG,AI,AL,AM,AO,AQ,AR,AS,AT,AU,AW,AX,AZ,BA,BB,BD,BE,BF,BG,BH,BI,BJ,BL,BM,BN,BO,BQ,BR,BS,BT,BV,BW,BY,BZ,CA,CC,CD,CF,CG,CH,CI,CK,CL,CM,CN,CO,CR,CU,CV,CW,CX,CY,CZ,DE,DJ,DK,DM,DO,DZ,EC,EE,EG,EH...",
+      "interactioncount": "1071",
+      "datepublished": "2018-02-20",
+      "genre": "Science & Technology"
+     }
+    ],
+    "imageobject": [
+     {
+      "url": "https://i.ytimg.com/vi/-2iJG0FVGaY/maxresdefault.jpg",
+      "width": "1280",
+      "height": "720"
+     }
+    ],
+    "person": [
+     {
+      "url": "http://www.youtube.com/user/jsconfeu"
+     },
+     {
+      "url": "https://plus.google.com/114805666032419693531"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://i.ytimg.com/vi/-2iJG0FVGaY/maxresdefault.jpg"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano | Facebook",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e | Facebook",
+   "link": "https://www.facebook.com/phoomparin.mano",
+   "displayLink": "www.facebook.com",
+   "snippet": "Phoomparin Mano is on Facebook. Join Facebook to connect with Phoomparin \nMano and others you may know. Facebook gives people the power to share and\n ...",
+   "htmlSnippet": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e is on Facebook. Join Facebook to connect with \u003cb\u003ePhoomparin\u003c/b\u003e \u003cbr\u003e\n\u003cb\u003eMano\u003c/b\u003e and others you may know. Facebook gives people the power to share and\u003cbr\u003e\n&nbsp;...",
+   "formattedUrl": "https://www.facebook.com/phoomparin.mano",
+   "htmlFormattedUrl": "https://www.facebook.com/\u003cb\u003ephoomparin\u003c/b\u003e.\u003cb\u003emano\u003c/b\u003e",
+   "pagemap": {
+    "metatags": [
+     {
+      "referrer": "default",
+      "al:android:app_name": "Facebook",
+      "al:android:package": "com.facebook.katana",
+      "al:android:url": "fb://profile/100013664474455",
+      "al:ios:app_name": "Facebook",
+      "al:ios:app_store_id": "284882215",
+      "al:ios:url": "fb://profile/100013664474455",
+      "og:title": "Phoomparin Mano",
+      "og:description": "Phoomparin Mano is on Facebook. Join Facebook to connect with Phoomparin Mano and others you may know. Facebook gives people the power to share and makes the world more open and connected.",
+      "og:image": "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-1/p200x200/51723305_587206385078172_2635351212240666624_n.jpg?_nc_cat=100&_nc_ht=scontent-atl3-1.xx&oh=bce5c33e925c695710b6f5bd73d406b5&oe=5D5321E1",
+      "og:url": "https://www.facebook.com/phoomparin.mano"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://scontent-atl3-1.xx.fbcdn.net/v/t1.0-1/p200x200/51723305_587206385078172_2635351212240666624_n.jpg?_nc_cat=100&_nc_ht=scontent-atl3-1.xx&oh=bce5c33e925c695710b6f5bd73d406b5&oe=5D5321E1"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "phoomparin (Phoomparin Mano) · GitHub",
+   "htmlTitle": "phoomparin (\u003cb\u003ePhoomparin Mano\u003c/b\u003e) · GitHub",
+   "link": "https://github.com/phoomparin",
+   "displayLink": "github.com",
+   "snippet": "Phoomparin Mano phoomparin. Developer Program Member. Pro. A 17 y/o \nsoftware developer. Passionate about building products and communities to ...",
+   "htmlSnippet": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e phoomparin. Developer Program Member. Pro. A 17 y/o \u003cbr\u003e\nsoftware developer. Passionate about building products and communities to&nbsp;...",
+   "cacheId": "JQLCy3KYkfEJ",
+   "formattedUrl": "https://github.com/phoomparin",
+   "htmlFormattedUrl": "https://github.com/\u003cb\u003ephoomparin\u003c/b\u003e",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "225",
+      "height": "225",
+      "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQkbsDETrEuzyZPPj09Jwr1zbeipfBNyL_3RrM37W43EuppApY2ruhKcOlq"
+     }
+    ],
+    "metatags": [
+     {
+      "viewport": "width=device-width",
+      "fb:app_id": "1401488693436528",
+      "twitter:image:src": "https://avatars0.githubusercontent.com/u/4714175?s=400&v=4",
+      "twitter:site": "@github",
+      "twitter:card": "summary",
+      "twitter:title": "phoomparin - Overview",
+      "twitter:description": "A 17 y/o software developer.\r\n\r\nPassionate about building products and communities to enhance lives.\r\n\r\nLoves the web and cutting-edge technologies. - phoomparin",
+      "og:image": "https://avatars0.githubusercontent.com/u/4714175?s=400&v=4",
+      "og:site_name": "GitHub",
+      "og:type": "profile",
+      "og:title": "phoomparin - Overview",
+      "og:url": "https://github.com/phoomparin",
+      "og:description": "A 17 y/o software developer.\r\n\r\nPassionate about building products and communities to enhance lives.\r\n\r\nLoves the web and cutting-edge technologies. - phoomparin",
+      "profile:username": "phoomparin",
+      "pjax-timeout": "1000",
+      "request-id": "AC13:310D:11828:22207:5CF02547",
+      "octolytics-host": "collector.githubapp.com",
+      "octolytics-app-id": "github",
+      "octolytics-event-url": "https://collector.githubapp.com/github-external/browser_event",
+      "octolytics-dimension-request_id": "AC13:310D:11828:22207:5CF02547",
+      "octolytics-dimension-region_edge": "iad",
+      "octolytics-dimension-region_render": "iad",
+      "analytics-location": "/\u003cuser-name\u003e",
+      "google-analytics": "UA-3769691-2",
+      "dimension1": "Logged Out",
+      "hostname": "github.com",
+      "expected-hostname": "github.com",
+      "js-proxy-site-detection-payload": "NTdkMzcwYjY1MTNjNzJmNmU1ZGRlMDI5OTY3NjgzNjcwZGVmNzhkYjdlMTZiNjgzMjc0NzIyMThlNDE0NTJiMnx7InJlbW90ZV9hZGRyZXNzIjoiNjYuMjQ5LjY0LjEyNiIsInJlcXVlc3RfaWQiOiJBQzEzOjMxMEQ6MTE4Mjg6MjIyMDc6NUNGMDI1NDciLCJ0aW1lc3RhbXAiOjE1NTkyNDIwNTksImhvc3QiOiJnaXRodWIuY29tIn0=",
+      "enabled-features": "UNIVERSE_BANNER,MARKETPLACE_INVOICED_BILLING,MARKETPLACE_SOCIAL_PROOF_CUSTOMERS,MARKETPLACE_TRENDING_SOCIAL_PROOF,MARKETPLACE_RECOMMENDATIONS",
+      "html-safe-nonce": "209b8f6368ee72e78292efb04b7ef20f85c4af98",
+      "browser-stats-url": "https://api.github.com/_private/browser/stats",
+      "browser-errors-url": "https://api.github.com/_private/browser/errors",
+      "theme-color": "#1e2327"
+     }
+    ],
+    "hcard": [
+     {
+      "fn": "Phoomparin Mano",
+      "url": "https://phoom.in.th",
+      "photo": "https://avatars0.githubusercontent.com/u/4714175?s=400&v=4"
+     }
+    ],
+    "person": [
+     {
+      "org": "OmniVirt"
+     },
+     {
+      "image": "https://avatars0.githubusercontent.com/u/4714175?s=400&v=4",
+      "name": "Phoomparin Mano",
+      "additionalname": "phoomparin",
+      "worksfor": "OmniVirt",
+      "homelocation": "Bangkok, Thailand.",
+      "email": "Sign in to view email",
+      "url": "https://phoom.in.th",
+      "follows": "https://github.com/noobdevth"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://avatars0.githubusercontent.com/u/4714175?s=400&v=4"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano – Medium",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e – Medium",
+   "link": "https://medium.com/@phoomparin",
+   "displayLink": "medium.com",
+   "snippet": "Read writing from Phoomparin Mano on Medium. A software developer with \npassion in building products and communities to enhance people's lives, and a \nThai ...",
+   "htmlSnippet": "Read writing from \u003cb\u003ePhoomparin Mano\u003c/b\u003e on Medium. A software developer with \u003cbr\u003e\npassion in building products and communities to enhance people&#39;s lives, and a \u003cbr\u003e\nThai&nbsp;...",
+   "cacheId": "QELDZICoW4EJ",
+   "formattedUrl": "https://medium.com/@phoomparin",
+   "htmlFormattedUrl": "https://medium.com/@\u003cb\u003ephoomparin\u003c/b\u003e",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "224",
+      "height": "224",
+      "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRTWI7--9FOTlPnjbp0F2IdmbdJ0uTEFG0lK3QjoHN2nV2iuVsGGmNQ15bK"
+     }
+    ],
+    "metatags": [
+     {
+      "viewport": "width=device-width,minimum-scale=1,initial-scale=1",
+      "theme-color": "#000000",
+      "twitter:app:name:iphone": "Medium",
+      "twitter:app:id:iphone": "828256236",
+      "al:ios:app_name": "Medium",
+      "al:ios:app_store_id": "828256236",
+      "al:android:package": "com.medium.reader",
+      "al:android:app_name": "Medium",
+      "fb:app_id": "542599432471018",
+      "og:site_name": "Medium",
+      "og:title": "Phoomparin Mano – Medium",
+      "og:description": "Read writing from Phoomparin Mano on Medium. A software developer with passion in building products and communities to enhance people’s lives, and a Thai high-school dropout.",
+      "twitter:description": "Read writing from Phoomparin Mano on Medium. A software developer with passion in building products and communities to enhance people’s lives, and a Thai high-school dropout.",
+      "og:url": "https://medium.com/@phoomparin",
+      "al:web:url": "https://medium.com/@phoomparin",
+      "al:ios:url": "medium://@phoomparin",
+      "twitter:app:url:iphone": "medium://@phoomparin",
+      "al:android:url": "medium://@phoomparin",
+      "fb:profile_id": "169819946816820",
+      "profile:username": "phoomparin",
+      "profile:first_name": "Phoomparin",
+      "profile:last_name": "Mano",
+      "og:type": "profile",
+      "twitter:card": "summary",
+      "og:image": "https://miro.medium.com/max/3150/1*aLvHRoInD09bxxxyu8p0FA.jpeg",
+      "twitter:image:src": "https://miro.medium.com/max/3150/1*aLvHRoInD09bxxxyu8p0FA.jpeg"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://miro.medium.com/max/3150/1*aLvHRoInD09bxxxyu8p0FA.jpeg"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e",
+   "link": "https://phoom.in.th/",
+   "displayLink": "phoom.in.th",
+   "snippet": "Sample.",
+   "htmlSnippet": "Sample.",
+   "cacheId": "HgQOf4J6VmkJ",
+   "formattedUrl": "https://phoom.in.th/",
+   "htmlFormattedUrl": "https://phoom.in.th/",
+   "pagemap": {
+    "metatags": [
+     {
+      "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+      "theme-color": "#663399"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano - Full Stack Developer - Axi Platform | LinkedIn",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e - Full Stack Developer - Axi Platform | LinkedIn",
+   "link": "https://th.linkedin.com/in/phoomparin",
+   "displayLink": "th.linkedin.com",
+   "snippet": "ดูโพรไฟล์ของ Phoomparin Mano ที่ LinkedIn ซึ่งเป็นชุมชนมืออาชีพที่ใหญ่ที่สุดในโลก \nPhoomparin มี 1 งาน ที่ระบุไว้ในโพรไฟล์ ดูโพรไฟล์แบบเต็มบน LinkedIn ...",
+   "htmlSnippet": "ดูโพรไฟล์ของ \u003cb\u003ePhoomparin Mano\u003c/b\u003e ที่ LinkedIn ซึ่งเป็นชุมชนมืออาชีพที่ใหญ่ที่สุดในโลก \u003cbr\u003e\nPhoomparin มี 1 งาน ที่ระบุไว้ในโพรไฟล์ ดูโพรไฟล์แบบเต็มบน LinkedIn&nbsp;...",
+   "formattedUrl": "https://th.linkedin.com/in/phoomparin",
+   "htmlFormattedUrl": "https://th.linkedin.com/in/\u003cb\u003ephoomparin\u003c/b\u003e",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "100",
+      "height": "100",
+      "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSS_ndKSybVx-Nuieg8i09uoCwf2n0tOeIT-u2sHCALN4nAwVuTLeRs5Q"
+     }
+    ],
+    "metatags": [
+     {
+      "pagekey": "public_profile_v3_desktop",
+      "seobeaconworkerurl": "https://static.licdn.com/sc/h/1f4so7osnxpgibipgq2nnx6em",
+      "locale": "th_TH",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "og:description": "ดูโพรไฟล์ของ Phoomparin Mano ที่ LinkedIn ซึ่งเป็นชุมชนมืออาชีพที่ใหญ่ที่สุดในโลก Phoomparin มี 1 งาน ที่ระบุไว้ในโพรไฟล์ ดูโพรไฟล์แบบเต็มบน LinkedIn และค้นพบคนรู้จักและงานของ Phoomparin ในบริษัทที่คล้ายกัน",
+      "twitter:description": "ดูโพรไฟล์ของ Phoomparin Mano ที่ LinkedIn ซึ่งเป็นชุมชนมืออาชีพที่ใหญ่ที่สุดในโลก Phoomparin มี 1 งาน ที่ระบุไว้ในโพรไฟล์ ดูโพรไฟล์แบบเต็มบน LinkedIn และค้นพบคนรู้จักและงานของ Phoomparin ในบริษัทที่คล้ายกัน",
+      "og:title": "Phoomparin Mano - Full Stack Developer - Axi Platform | LinkedIn",
+      "og:image": "https://media.licdn.com/dms/image/C5603AQHdkuEO05wsgA/profile-displayphoto-shrink_200_200/0?e=1564012800&amp;v=beta&amp;t=lrIuaA3BppeAykvO8MuOD_I1KfALVr2eJrJhaxucdYk",
+      "og:type": "article",
+      "og:url": "https://th.linkedin.com/in/phoomparin",
+      "twitter:card": "summary",
+      "twitter:site": "@Linkedin",
+      "twitter:title": "Phoomparin Mano - Full Stack Developer - Axi Platform | LinkedIn",
+      "twitter:image": "https://media.licdn.com/dms/image/C5603AQHdkuEO05wsgA/profile-displayphoto-shrink_200_200/0?e=1564012800&amp;v=beta&amp;t=lrIuaA3BppeAykvO8MuOD_I1KfALVr2eJrJhaxucdYk"
+     }
+    ],
+    "hcard": [
+     {
+      "fn": "Phoomparin Mano",
+      "title": "Full Stack JavaScript Developer at Axi Platform."
+     }
+    ],
+    "person": [
+     {
+      "org": "Full Stack Developer ที่ Axi Platform",
+      "role": "Full Stack JavaScript Developer at Axi Platform."
+     },
+     {
+      "name": "Phoomparin Mano",
+      "jobtitle": "Full Stack JavaScript Developer at Axi Platform."
+     }
+    ],
+    "organization": [
+     {
+      "name": "Full Stack Developer ที่ Axi Platform"
+     },
+     {
+      "name": "Triamudomsuksa Pattanakarn School"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://media.licdn.com/dms/image/C5103AQFlbwqG4503PQ/profile-displayphoto-shrink_100_100/0?e=1564012800&v=beta&t=0Ffo_SweSl2GTiowHln2q_Sh-MnfA4w0CzHvJSsSUI8"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e",
+   "link": "https://twitter.com/phoomparin?lang=en",
+   "displayLink": "twitter.com",
+   "snippet": "The latest Tweets from P's Shadow (@phoomparin)",
+   "htmlSnippet": "The latest Tweets from P&#39;s Shadow (@\u003cb\u003ephoomparin\u003c/b\u003e)",
+   "cacheId": "kmU3wUPNNLoJ",
+   "formattedUrl": "https://twitter.com/phoomparin?lang=en",
+   "htmlFormattedUrl": "https://twitter.com/\u003cb\u003ephoomparin\u003c/b\u003e?lang=en",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "225",
+      "height": "225",
+      "src": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQNJW1sNtm_sQ5QdjV1aB7Di0YRjetspQul-dRbyCT8jPqicEbYAvL7EUA"
+     }
+    ],
+    "metatags": [
+     {
+      "msapplication-tileimage": "//abs.twimg.com/favicons/win8-tile-144.png",
+      "msapplication-tilecolor": "#00aced",
+      "swift-page-name": "profile",
+      "swift-page-section": "profile",
+      "al:ios:url": "twitter://user?screen_name=phoomparin",
+      "al:ios:app_store_id": "333903271",
+      "al:ios:app_name": "Twitter",
+      "al:android:url": "twitter://user?screen_name=phoomparin",
+      "al:android:package": "com.twitter.android",
+      "al:android:app_name": "Twitter"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://pbs.twimg.com/profile_images/1128682526057177088/qc4C4Kfk_400x400.jpg"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e",
+   "link": "https://bandcamp.com/phoomparin",
+   "displayLink": "bandcamp.com",
+   "snippet": "Phoomparin Mano. Follow. Following. Unfollow. edit profile. share profile. \nBangkok, Thailand; Pop. Software Developer, Tinkerer, Dreamer. Builds stuff with \ncode ...",
+   "htmlSnippet": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e. Follow. Following. Unfollow. edit profile. share profile. \u003cbr\u003e\nBangkok, Thailand; Pop. Software Developer, Tinkerer, Dreamer. Builds stuff with \u003cbr\u003e\ncode&nbsp;...",
+   "cacheId": "7zdb4WSpP8gJ",
+   "formattedUrl": "https://bandcamp.com/phoomparin",
+   "htmlFormattedUrl": "https://bandcamp.com/\u003cb\u003ephoomparin\u003c/b\u003e",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "210",
+      "height": "210",
+      "src": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ67iMgxw9kdNu1_FgboGaWI21eioScQqrE6wA5Oz64r66UbE5CmENxW50_"
+     }
+    ],
+    "metatags": [
+     {
+      "apple-mobile-web-app-capable": "yes",
+      "norton-safeweb-site-verification": "ejd7gu5uojnhaq1f4mkwkx8rbydsxtne25pyxbyv24x7e2b-voeqw8wohh9j183bfyeq109vyl4vd396-wkx1gog2vv4g21x39voxpe75a96ahp98-nookkmva7n5t7a",
+      "title": "Phoomparin Mano's collection | Bandcamp",
+      "og:title": "Phoomparin Mano's collection | Bandcamp",
+      "og:type": "profile",
+      "og:url": "https://bandcamp.com/phoomparin",
+      "og:site_name": "Bandcamp",
+      "og:description": "Bangkok, Thailand • Pop • 3 collection items",
+      "og:image": "https://f4.bcbits.com/img/0014780576_41.jpg",
+      "og:image:width": "210",
+      "og:image:height": "210"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://f4.bcbits.com/img/0014780576_41.jpg"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "Phoomparin Mano (@phoomparin) | Twitter",
+   "htmlTitle": "\u003cb\u003ePhoomparin Mano\u003c/b\u003e (@phoomparin) | Twitter",
+   "link": "https://twitter.com/phoomparin?lang=gl",
+   "displayLink": "twitter.com",
+   "snippet": "Os últimos chíos de Phoomparin Mano (@phoomparin). A 17 y/o software \ndeveloper. Passionate about building products and fostering communities to \nenhance ...",
+   "htmlSnippet": "Os últimos chíos de \u003cb\u003ePhoomparin Mano\u003c/b\u003e (@phoomparin). A 17 y/o software \u003cbr\u003e\ndeveloper. Passionate about building products and fostering communities to \u003cbr\u003e\nenhance&nbsp;...",
+   "cacheId": "R_LGIeqKPsMJ",
+   "formattedUrl": "https://twitter.com/phoomparin?lang=gl",
+   "htmlFormattedUrl": "https://twitter.com/\u003cb\u003ephoomparin\u003c/b\u003e?lang=gl",
+   "pagemap": {
+    "cse_thumbnail": [
+     {
+      "width": "225",
+      "height": "225",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpC94bLbtjkW2R2L7cuj_jcB3lqAj2eWDSyEvjwOcQpXxavWELpnvCXk4W"
+     }
+    ],
+    "metatags": [
+     {
+      "msapplication-tileimage": "//abs.twimg.com/favicons/win8-tile-144.png",
+      "msapplication-tilecolor": "#00aced",
+      "swift-page-name": "profile",
+      "swift-page-section": "profile",
+      "al:ios:url": "twitter://user?screen_name=phoomparin",
+      "al:ios:app_store_id": "333903271",
+      "al:ios:app_name": "Twitter",
+      "al:android:url": "twitter://user?screen_name=phoomparin",
+      "al:android:package": "com.twitter.android",
+      "al:android:app_name": "Twitter"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://pbs.twimg.com/profile_images/1093789678862389250/3K2F06fp_400x400.jpg"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "customsearch#result",
+   "title": "phoomparin (Phoomparin Mano) | Keybase",
+   "htmlTitle": "phoomparin (\u003cb\u003ePhoomparin Mano\u003c/b\u003e) | Keybase",
+   "link": "https://keybase.io/phoomparin",
+   "displayLink": "keybase.io",
+   "snippet": "phoomparin (Phoomparin Mano) is now on Keybase, an open source app for \nencryption and cryptography.",
+   "htmlSnippet": "phoomparin (\u003cb\u003ePhoomparin Mano\u003c/b\u003e) is now on Keybase, an open source app for \u003cbr\u003e\nencryption and cryptography.",
+   "cacheId": "sjM9_2FijksJ",
+   "formattedUrl": "https://keybase.io/phoomparin",
+   "htmlFormattedUrl": "https://keybase.io/\u003cb\u003ephoomparin\u003c/b\u003e",
+   "pagemap": {
+    "metatags": [
+     {
+      "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+      "og:description": "phoomparin (Phoomparin Mano) is now on Keybase, an open source app for encryption and cryptography.",
+      "twitter:site": "@phoomparin",
+      "twitter:image": "https://s3.amazonaws.com/keybase_processed_uploads/305d422e8575f2da2a847c9efa5eca05_360_360.jpg",
+      "twitter:title": "phoomparin (Phoomparin Mano) on Keybase",
+      "twitter:description": "phoomparin (Phoomparin Mano) is now on Keybase, an open source app for encryption and cryptography.",
+      "og:image": "https://s3.amazonaws.com/keybase_processed_uploads/305d422e8575f2da2a847c9efa5eca05_360_360.jpg",
+      "og:image:width": "360",
+      "og:image:height": "360"
+     }
+    ],
+    "cse_image": [
+     {
+      "src": "https://s3.amazonaws.com/keybase_processed_uploads/305d422e8575f2da2a847c9efa5eca05_360_360.jpg"
+     }
+    ]
+   }
+  }
+ ]
+}
