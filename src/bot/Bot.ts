@@ -2,21 +2,21 @@ import {QueryResult} from 'dialogflow'
 import {runDialogflow} from 'runDialogflow'
 
 import {db, Item} from 'db'
-import {getDeeplink} from 'getDeeplink'
-import {debug} from 'WebhookService'
-import {success} from 'bot/send'
+import {requestToPay} from 'bot/requestToPay'
 
 interface ChatMessage {
   text: string
 }
 
+type BotResponse = string | object
+
 export interface BotContext {
   sender: string
-  reply: (response: string | object) => Promise<void>
+  reply: (response: BotResponse) => Promise<void>
   dialogflow?: QueryResult
 }
 
-const match = (regex: RegExp, text: string) => {
+export function match(regex: RegExp, text: string) {
   const m = regex.exec(text)
   if (!m) return ''
 
@@ -34,9 +34,26 @@ function getItemName(text: string) {
   return item.replace(priceRegex, '')
 }
 
-const payAmountRegex = /\/pay (\d+)/
+export function handleDialogflow(dialogflow: QueryResult | null): BotResponse | false {
+  if (!dialogflow) return false
 
-export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string | object> {
+  const {fulfillmentText, parameters} = dialogflow
+  const {fields} = parameters
+
+  if (fields.ProductNames) {
+    const {stringValue: productName} = fields.ProductNames
+
+    if (Math.random() > 0.9) {
+      return `${productName}หมดแล้วค่ะ ขอโทษด้วยนะคะ`
+    }
+  }
+
+  if (fulfillmentText) return fulfillmentText
+
+  return false
+}
+
+export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
 
   if (text.includes('/prayuth')) {
@@ -44,54 +61,13 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   }
 
   if (text.includes('/pay')) {
-    const amountText = match(payAmountRegex, text)
-    const amount = parseInt(amountText || '100', 10)
-
-    const deeplink = await getDeeplink(amount)
-    const {deeplinkUrl, transactionId, userRefId} = deeplink
-
-    success(`[🦄] Deep Link: ${deeplinkUrl}`)
-    debug(`> Transaction = ${transactionId} | User Ref = ${userRefId}`)
-
-    const baseURL = 'https://1d747d7e.ngrok.io'
-    const url = baseURL + `/redirect?url=${encodeURIComponent(deeplinkUrl)}`
-    debug('Redirect URL =', url)
-
-    return {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "button",
-          text: `สินค้าชิ้นนี้ราคา ${amount} บาทนะคะ`,
-          buttons: [
-            {
-              type: "web_url",
-              url,
-              title: `จ่ายเงิน`,
-              webview_height_ratio: "full"
-            }
-          ]
-        }
-      }
-    }
+    return requestToPay(text)
   }
 
   const dialogflow = await runDialogflow(text)
 
-  if (dialogflow) {
-    const {fulfillmentText, parameters} = dialogflow
-    const {fields} = parameters
-
-    if (fields.ProductNames) {
-      const {stringValue: productName} = fields.ProductNames
-
-      if (Math.random() > 0.7) {
-        return `${productName}หมดแล้วค่ะ ขอโทษด้วยนะคะ`
-      }
-    }
-
-    if (fulfillmentText) return fulfillmentText
-  }
+  const response = handleDialogflow(dialogflow)
+  if (response) return response
 
   if (text.includes('กี่บาท')) {
     const name = getItemName(text)
