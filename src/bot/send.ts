@@ -3,7 +3,7 @@ import axios from 'axios'
 // Your verify token. Should be a random string.
 const {PAGE_ACCESS_TOKEN} = process.env
 
-export async function reply(sender: string, response: any) {
+export async function send(sender: string, response: any) {
   try {
     // Construct the message body
     const request_body = {
@@ -19,11 +19,19 @@ export async function reply(sender: string, response: any) {
     const endpoint = 'https://graph.facebook.com/v2.6/me/messages'
 
     const {data} = await axios.post(endpoint, request_body, {
-      params: {access_token: PAGE_ACCESS_TOKEN},
+      params: {access_token: PAGE_ACCESS_TOKEN}
     })
 
     console.log('✅ Reply Request is sent!', data)
   } catch (err) {
-    console.log('🔥 Reply Error! Response =>', err.response)
+    console.log('🔥 Reply Error!')
+
+    if (err.response) {
+      const {data} = err.response
+
+      if (data.error) {
+        console.log('🔥 Error Detail:', data.error)
+      }
+    }
   }
 }

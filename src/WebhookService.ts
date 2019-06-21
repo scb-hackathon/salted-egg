@@ -41,7 +41,7 @@ export class WebhookService {
         const {message, postback} = event
 
         if (message) {
-          console.log('> Message =', message)
+          console.log('> Message:', message.text)
 
           return handleMessage(senderID, message)
         }

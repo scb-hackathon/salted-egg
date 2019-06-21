@@ -1,4 +1,4 @@
-import {reply} from 'bot/reply'
+import {send} from 'send.ts'
 
 export async function handlePostback(senderID: string, postback: any) {
   const {payload} = postback
@@ -6,10 +6,10 @@ export async function handlePostback(senderID: string, postback: any) {
   console.log('>> Handling Postback')
 
   if (payload === 'yes') {
-    return reply(senderID, {'text': 'Thanks!'})
+    return send(senderID, {'text': 'Thanks!'})
   }
 
   if (payload === 'no') {
-    return reply(senderID, {'text': 'Oops, try sending another image.'})
+    return send(senderID, {'text': 'Oops, try sending another image.'})
   }
 }
