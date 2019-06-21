@@ -1,5 +1,6 @@
 {
-  "name": "Shinichi",
+  "name": "salted-egg",
+  "description": "Salted Egg and Bubble Tea!",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
