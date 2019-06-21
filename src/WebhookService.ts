@@ -1,7 +1,29 @@
 import errors from '@feathersjs/errors'
 
+interface ServiceOption {
+  query: {[key: string]: string}
+}
+
+// Your verify token. Should be a random string.
+const {VERIFY_TOKEN} = process.env
+
 export class WebhookService {
-  async find() {
+  async find(options: ServiceOption) {
+    const {query} = options
+
+    // Parse the query params
+    const mode = query['hub.mode'];
+    const token = query['hub.verify_token'];
+    const challenge = query['hub.challenge'];
+
+    if (mode && token) {
+      if (mode === 'subscribe' && token === VERIFY_TOKEN) {
+        return challenge
+      }
+
+      throw new errors.Forbidden()
+    }
+
     return {message: 'Tsk Tsk!'}
   }
 
