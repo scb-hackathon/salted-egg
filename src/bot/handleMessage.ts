@@ -23,7 +23,7 @@ export async function handleMessage(senderID: string, message: any) {
   console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
   try {
-    const context: BotContext = {reply}
+    const context: BotContext = {reply, sender: senderID}
 
     const result = await Bot(message, context)
     if (!result) return

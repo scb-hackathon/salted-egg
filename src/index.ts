@@ -28,7 +28,6 @@ app.get('/', (_req, res) => {
 
 app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
-app.use('/dialogflow', new DialogflowService())
 
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler({
