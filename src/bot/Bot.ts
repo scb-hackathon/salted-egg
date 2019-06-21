@@ -35,10 +35,20 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   const {dialogflow} = ctx
 
   if (dialogflow) {
-    const {fulfillmentText, intent} = dialogflow
+    const {fulfillmentText, intent, parameters} = dialogflow
+    const {fields} = parameters
+    const {name, displayName} = intent
 
-    console.log('[💬] Fulfillment Response =', fulfillmentText)
-    console.log('[💬] Intent =', intent)
+    console.log('[💬] Fulfillment Response:', fulfillmentText)
+    console.log(`[💬] Intent: ${displayName} (${name})`)
+
+    if (fields.ProductNames) {
+      const {stringValue: productName} = fields.ProductNames
+
+      if (Math.random() > 0.7) {
+        return `${productName}หมดแล้วค่ะ ขอโทษด้วยนะคะ`
+      }
+    }
 
     if (fulfillmentText) return fulfillmentText
   }
