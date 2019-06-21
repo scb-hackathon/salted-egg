@@ -1,4 +1,4 @@
-import {send} from 'send.ts'
+import {send} from './send'
 
 function createReply(sid: string) {
   return function reply(response: string | object) {
@@ -15,7 +15,7 @@ export async function handleMessage(senderID: string, message: any) {
   const reply = createReply(senderID)
   if (!text) return
 
-  console.log(`>> Handling Message ${text} from ${senderID}...`)
+  console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
   if (text.includes('กี่บาท')) {
     return reply('🏷 ชิ้นนี้ราคา 112 บาทครับ')

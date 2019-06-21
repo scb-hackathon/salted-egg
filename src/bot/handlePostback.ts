@@ -1,4 +1,4 @@
-import {send} from 'send.ts'
+import {send} from './send'
 
 export async function handlePostback(senderID: string, postback: any) {
   const {payload} = postback
