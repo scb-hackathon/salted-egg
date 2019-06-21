@@ -1,22 +1,19 @@
 import uuid from 'uuid'
 import {wtf} from 'bot/handleMessage'
-import {SessionsClient} from 'dialogflow'
+import {QueryResult, SessionsClient} from 'dialogflow'
 
 const PROJECT_ID = 'sellerbot-th1-ucuhdp'
 
 /**
  * Send a query to the dialogflow agent, and return the query result.
  */
-export async function runDialogflow(text: string) {
-  console.debug('>> Matching Intent:', text)
-
+export async function runDialogflow(text: string): Promise<QueryResult[]> {
   try {
     // A unique identifier for the given session
     const sessionId = uuid.v4()
 
     // Create a new session
     const sessionClient = new SessionsClient()
-    console.log('>> SessClient =', sessionClient)
 
     const sessionPath = sessionClient.sessionPath(PROJECT_ID, sessionId)
 
@@ -36,13 +33,14 @@ export async function runDialogflow(text: string) {
 
     // Send request and log result
     const responses = await sessionClient.detectIntent(request)
+    const results = responses.filter(x => x).filter(x => x.queryResult).map(x => x.queryResult)
 
-    console.log('>> Intent Responses =', responses.length)
+    console.log('>> Dialogflow Intents:', results.length)
 
-    const result = responses[0].queryResult
-
-    return result
+    return results
   } catch (error) {
     wtf('Error happened on Dialogflow:', error.message)
+
+    return []
   }
 }
