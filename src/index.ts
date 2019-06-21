@@ -7,6 +7,7 @@ import express from '@feathersjs/express'
 import {WebhookService} from 'WebhookService'
 import {Request, Response} from 'express'
 import {FeathersError} from '@feathersjs/errors'
+import {PaymentRedirectHTML} from 'PaymentRedirectHTML.ts'
 
 const {PORT} = process.env
 
@@ -33,9 +34,9 @@ app.get('/redirect', (req: Request, res: Response) => {
   const decoded = Buffer.from(url, 'base64').toString('binary');
   console.log('> Redirecting to Decoded URL =', decoded)
 
-  res.setHeader('Location', decoded)
-  res.status(301)
-  res.send('<h1>REDIRECT</h1>')
+  // res.setHeader('Location', decoded)
+  // res.status(302)
+  res.send(PaymentRedirectHTML.replace('{{DECODED}}', decoded))
 })
 
 // Set up an error handler that gives us nicer errors
