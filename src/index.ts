@@ -19,7 +19,7 @@ app.configure(express.rest())
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler())
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send({status: 'OK'})
 })
 
