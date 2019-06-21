@@ -1,4 +1,5 @@
 import {send} from './send'
+import {Bot, BotContext} from 'bot/Bot'
 
 function createReply(sid: string) {
   return function reply(response: string | object) {
@@ -8,26 +9,6 @@ function createReply(sid: string) {
 
     return send(sid, response)
   }
-}
-
-interface ChatMessage {
-  text: string
-}
-
-function Bot(message: ChatMessage): string | object {
-  const {text} = message
-
-  if (text.includes('กี่บาท')) {
-    const price = Math.floor(Math.random() * 1000)
-
-    return `อันนี้ราคา ${price} บาทครับ 🦄`
-  }
-
-  if (text.includes('จ่าย')) {
-    return 'กดที่ลิ้งค์นี้เบย: pay.scb/phoomparin/112'
-  }
-
-  return `🦄 คุณส่งข้อความมาว่า: ${text} ใช่มั้ย?`
 }
 
 function wtf(...args: any[]) {
@@ -42,7 +23,9 @@ export async function handleMessage(senderID: string, message: any) {
   console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
   try {
-    const result = Bot(message)
+    const context: BotContext = {reply}
+
+    const result = await Bot(message, context)
     if (!result) return
 
     return reply(result)
