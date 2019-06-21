@@ -3,6 +3,8 @@ import 'dotenv/config'
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
 
+const {PORT} = process.env
+
 export const app = express(feathers())
 
 // Turn on JSON body parsing for REST services
@@ -27,4 +29,4 @@ app.use('/hello', {
   }
 })
 
-app.listen(3030)
+app.listen(PORT)
