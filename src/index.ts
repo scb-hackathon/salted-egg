@@ -30,7 +30,7 @@ app.use('/webhook', new WebhookService())
 
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler({
-  json(error: FeathersError, req: Request, res: Response, next) {
+  json(error: FeathersError, _req: Request, res: Response, next: Function) {
     console.error('[!!] Error:', error.code, error.name)
 
     res.sendStatus(error.code)
