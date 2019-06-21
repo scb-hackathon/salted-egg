@@ -15,7 +15,10 @@ export async function requestToPay(text: string) {
   debug(`> Transaction = ${transactionId} | User Ref = ${userRefId}`)
 
   const baseURL = 'https://1d747d7e.ngrok.io'
-  const url = baseURL + `/redirect?url=${encodeURIComponent(deeplinkUrl)}`
+  const encoded = Buffer.from(deeplinkUrl, 'binary').toString('base64')
+  const url = baseURL + `/redirect?url=${encoded}`
+
+  // const url = 'https://howlonguntilprayuthleaves.com'
   debug('Redirect URL =', url)
 
   return {

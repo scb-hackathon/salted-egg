@@ -29,9 +29,11 @@ app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
 
 app.get('/redirect', (req: Request, res: Response) => {
-  console.log('> Redirecting to:', req.query.url)
+  const {url} = req.query
+  const decoded = Buffer.from(url, 'base64').toString('binary');
+  console.log('> Redirecting to Decoded URL =', decoded)
 
-  res.setHeader('Location', req.query.url)
+  res.setHeader('Location', decoded)
   res.status(301)
   res.send('<h1>REDIRECT</h1>')
 })
