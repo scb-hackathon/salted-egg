@@ -7,6 +7,7 @@ import express from '@feathersjs/express'
 import {WebhookService} from 'WebhookService'
 import {Request, Response} from 'express'
 import {FeathersError} from '@feathersjs/errors'
+import {DialogflowService} from 'DialogflowService'
 
 const {PORT} = process.env
 
@@ -27,6 +28,7 @@ app.get('/', (_req, res) => {
 
 app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
+app.use('/dialogflow', new DialogflowService())
 
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler({

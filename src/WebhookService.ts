@@ -28,15 +28,31 @@ export class WebhookService {
 
     // Checks this is an event from a page subscription
     if (object === 'page') {
-      for (let item of entry) {
+      entry.forEach(item => {
         const event = item.messaging[0]
         const senderID = event.sender.id
 
         console.log('Incoming Event! Sender =', senderID)
 
-        if (event.message) handleMessage(senderID, event.message).then()
-        if (event.postback) handlePostback(senderID, event.postback).then()
-      }
+        if (!event) {
+          console.log('🦄 WTF: This should not happen!')
+          continue
+        }
+
+        const {message, postback} = event
+
+        if (message) {
+          console.log('> Message =', message)
+
+          return handleMessage(senderID, message)
+        }
+
+        if (postback) {
+          console.log('> Postback =', message)
+
+          return handlePostback(senderID, postback)
+        }
+      })
 
       return 'EVENT_RECEIVED'
     }

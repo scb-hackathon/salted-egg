@@ -11,7 +11,7 @@ export function validateChallenge(query: ServiceQuery) {
     if (mode === 'subscribe' && token === VERIFY_TOKEN) {
       console.log('>> Challenge Accepted:', challenge)
 
-      return challenge
+      return JSON.parse(challenge)
     }
   }
 
