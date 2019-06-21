@@ -2,6 +2,7 @@ import {QueryResult} from 'dialogflow'
 import {runDialogflow} from 'runDialogflow'
 
 import {db, Item} from 'db'
+import {getDeeplink} from 'getDeeplink'
 
 interface ChatMessage {
   text: string
@@ -39,6 +40,9 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   }
 
   if (text.includes('/pay')) {
+    const deeplink = await getDeeplink(9000)
+    console.log('Deep Link =', deeplink)
+
     return 'https://pay.scb/phoomparin/9000'
   }
 
