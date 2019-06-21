@@ -32,7 +32,7 @@ export async function send(sender: string, response: any) {
       const {data} = err.response
 
       if (data.error) {
-        debug('🔥 Error Detail:', data.error)
+        debug(`🔥 Error Detail: ${data.error.message}`)
       }
     }
   }
