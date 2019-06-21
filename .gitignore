@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/node,macos,intellij,code,javascript
-# Edit at https://www.gitignore.io/?templates=node,macos,intellij,code,javascript
+# Created by https://www.gitignore.io/api/node,macos,intellij,code
+# Edit at https://www.gitignore.io/?templates=node,macos,intellij,code
 
 ### Code ###
 .vscode/*
@@ -90,8 +90,6 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
-
-#!! ERROR: javascript is undefined. Use list command to see defined gitignore types !!#
 
 ### macOS ###
 # General
@@ -207,12 +205,4 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# End of https://www.gitignore.io/api/node,macos,intellij,code,javascript
-
-.rts2_cache_cjs
-.rts2_cache_es
-.rts2_cache_umd
-
-dist
-
-build
+# End of https://www.gitignore.io/api/node,macos,intellij,code
