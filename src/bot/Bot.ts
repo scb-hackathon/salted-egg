@@ -38,6 +38,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
     return 'https://howlonguntilprayuthleaves.com'
   }
 
+  if (text.includes('/pay')) {
+    return 'https://pay.scb/phoomparin/9000'
+  }
+
   const dialogflow = await runDialogflow(text)
 
   if (dialogflow) {
