@@ -4,6 +4,7 @@ import {runDialogflow} from 'bot/runDialogflow'
 import {Cart, db, Product} from 'db'
 import {requestToPay} from 'bot/requestToPay'
 import {handleDialogflow} from 'bot/handleDialogflow'
+import {buildReceipt} from 'receipt'
 
 interface ChatMessage {
   text: string
@@ -52,6 +53,13 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     const amount = parseInt(amountText || '100', 10)
 
     return requestToPay(amount)
+  }
+
+  if (text.includes('/receipt')) {
+    const products: Cart[] = db.get('cart').value()
+    const list = products.filter(p => p.buyer === ctx.sender)
+
+    return buildReceipt(list)
   }
 
   if (text.includes('กี่บาท')) {
