@@ -1,6 +1,5 @@
 import {db, Item} from 'db'
-import {dialogflow} from 'googleapis/build/src/apis/dialogflow'
-import {matchIntent} from 'dialogflow'
+import {QueryResult} from 'runDialogflow.ts'
 
 interface ChatMessage {
   text: string
@@ -9,6 +8,7 @@ interface ChatMessage {
 export interface BotContext {
   sender: string
   reply: (response: string | object) => Promise<void>
+  dialogflow?: QueryResult
 }
 
 const match = (regex: RegExp, text: string) => {
@@ -31,9 +31,17 @@ function getItemName(text: string) {
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string | object> {
   const {text} = message
+  const {intent} = ctx
 
-  const intent = await matchIntent(message.text)
-  console.log('Intent =', intent)
+  if (intent) {
+    const {fulfillmentText} = intent
+
+    console.log('😎 FF Text =', fulfillmentText)
+
+    console.log('Intent =', intent)
+
+    if (fulfillmentText) return fulfillmentText
+  }
 
   if (text.includes('กี่บาท')) {
     const name = getItemName(text)

@@ -1,5 +1,6 @@
 import {send} from './send'
 import {Bot, BotContext} from 'bot/Bot'
+import {runDialogflow} from 'runDialogflow.ts'
 
 function createReply(sid: string) {
   return function reply(response: string | object) {
@@ -11,8 +12,8 @@ function createReply(sid: string) {
   }
 }
 
-function wtf(...args: any[]) {
-  console.warn(`[🔥]`, ...args)
+export function wtf(...args: any[]) {
+  console.error(`[🔥]`, ...args)
 }
 
 export async function handleMessage(senderID: string, message: any) {
@@ -23,14 +24,25 @@ export async function handleMessage(senderID: string, message: any) {
   console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
   try {
-    const context: BotContext = {reply, sender: senderID}
+    const dialogflow = await runDialogflow(text)
+    console.log('>> Dialogflow OK.')
+
+    const context: BotContext = {
+      sender: senderID,
+      reply,
+      dialogflow,
+    }
+
+    console.log('--- BOT START ---')
 
     const result = await Bot(message, context)
     if (!result) return
 
+    console.log('--- BOT END ---')
+
     return reply(result)
   } catch (error) {
-    wtf('Something bad happened:', error.message)
+    wtf('Error in handleMessage:', error.message)
 
     return reply(`🦄 รอสักครู่นะคะ`)
   }

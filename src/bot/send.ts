@@ -22,7 +22,7 @@ export async function send(sender: string, response: any) {
       params: {access_token: PAGE_ACCESS_TOKEN}
     })
 
-    console.log('✅ Reply Request is sent!', data)
+    console.log('✅ Reply Request is sent!')
   } catch (err) {
     console.log('🔥 Reply Error!')
 
