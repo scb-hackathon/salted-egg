@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import errors from '@feathersjs/errors'
 import {validateChallenge} from 'bot/validateChallenge'
 import {handleMessage} from 'bot/handleMessage'
@@ -9,6 +10,10 @@ export type ServiceQuery = {
 
 export interface ServiceOption {
   query: ServiceQuery
+}
+
+function debug(name: string, ...args: any[]) {
+  console.debug(chalk.grey(name), ...args)
 }
 
 export class WebhookService {
@@ -23,15 +28,13 @@ export class WebhookService {
 
   async create(payload) {
     const {object, entry} = payload
-    console.log('> POST /webhook')
+    debug('> POST /webhook')
 
     // Checks this is an event from a page subscription
     if (object === 'page') {
       entry.forEach(item => {
         const event = item.messaging[0]
         const senderID = event.sender.id
-
-        console.log('Incoming Event! Sender =', senderID)
 
         if (!event) {
           console.log('🦄 WTF: This should not happen!')
