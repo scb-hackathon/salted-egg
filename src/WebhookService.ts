@@ -28,7 +28,6 @@ export class WebhookService {
 
   async create(payload) {
     const {object, entry} = payload
-    debug('> POST /webhook')
 
     // Checks this is an event from a page subscription
     if (object === 'page') {
