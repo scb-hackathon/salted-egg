@@ -1,9 +1,14 @@
 import axios from 'axios'
 
 import {debug} from 'WebhookService'
+import chalk from 'chalk'
 
 // Your verify token. Should be a random string.
 const {PAGE_ACCESS_TOKEN} = process.env
+
+function success(text: string, ...args: any[]) {
+  console.info(chalk.green(chalk.bold(text)), ...args)
+}
 
 export async function send(sender: string, response: any) {
   try {
@@ -16,7 +21,7 @@ export async function send(sender: string, response: any) {
     }
 
     if (response.text) {
-      console.log(`[🦄] Replying ${response.text}`)
+      console.log(`[🦄] Replying: ${response.text}`)
     } else {
       console.log(`[🦄] Replying non-text message to ${sender}`)
     }
@@ -28,13 +33,13 @@ export async function send(sender: string, response: any) {
       params: {access_token: PAGE_ACCESS_TOKEN}
     })
 
-    console.log('✅  Reply Request is sent!')
+    success('[✅] Reply Request is sent!')
   } catch (err) {
     if (err.response) {
       const {data} = err.response
 
       if (data.error) {
-        debug(`🔥 Reply Error: ${data.error.message}`)
+        debug(`[🔥] Reply Error: ${data.error.message}`)
       }
     }
   }
