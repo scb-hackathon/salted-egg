@@ -91,6 +91,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
       await ctx.reply(`${index}) ${product.name} - ราคา ${product.price} บาท`)
     }
 
+    const receipt = buildReceipt(list)
+
+    await ctx.reply(receipt)
+
     return requestToPay(totalPrice)
   }
 
