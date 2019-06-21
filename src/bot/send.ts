@@ -8,19 +8,23 @@ const {PAGE_ACCESS_TOKEN} = process.env
 export async function send(sender: string, response: any) {
   try {
     // Construct the message body
-    const request_body = {
+    const payload = {
       recipient: {
         id: sender,
       },
       message: response,
     }
 
-    console.log('🦄 Sending Response to:', sender)
+    if (response.text) {
+      console.log(`[🦄] Replying ${response.text}`)
+    } else {
+      console.log(`[🦄] Replying non-text message to ${sender}`)
+    }
 
     // Send the HTTP request to the Messenger Platform
     const endpoint = 'https://graph.facebook.com/v2.6/me/messages'
 
-    await axios.post(endpoint, request_body, {
+    await axios.post(endpoint, payload, {
       params: {access_token: PAGE_ACCESS_TOKEN}
     })
 
