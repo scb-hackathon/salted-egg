@@ -7,7 +7,7 @@ const PROJECT_ID = 'sellerbot-th1-ucuhdp'
 /**
  * Send a query to the dialogflow agent, and return the query result.
  */
-export async function runDialogflow(text: string): Promise<QueryResult[]> {
+export async function runDialogflow(text: string): Promise<QueryResult | null> {
   try {
     // A unique identifier for the given session
     const sessionId = uuid.v4()
@@ -35,12 +35,14 @@ export async function runDialogflow(text: string): Promise<QueryResult[]> {
     const responses = await sessionClient.detectIntent(request)
     const results = responses.filter(x => x).filter(x => x.queryResult).map(x => x.queryResult)
 
-    console.log('>> Dialogflow Intents:', results.length)
+    if (results.length > 1) {
+      console.log('[??] Dialogflow Intents:', results.length)
+    }
 
-    return results
+    return results[0]
   } catch (error) {
     wtf('Error happened on Dialogflow:', error.message)
 
-    return []
+    return null
   }
 }

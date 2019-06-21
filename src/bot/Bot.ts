@@ -9,7 +9,7 @@ interface ChatMessage {
 export interface BotContext {
   sender: string
   reply: (response: string | object) => Promise<void>
-  dialogflow?: QueryResult[]
+  dialogflow?: QueryResult
 }
 
 const match = (regex: RegExp, text: string) => {
@@ -35,14 +35,12 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   const {dialogflow} = ctx
 
   if (dialogflow) {
-    for (let result of dialogflow) {
-      const {fulfillmentText, intent} = result
+    const {fulfillmentText, intent} = dialogflow
 
-      console.log('[💬] Fulfillment Response =', fulfillmentText)
-      console.log('[💬] Intent =', intent)
+    console.log('[💬] Fulfillment Response =', fulfillmentText)
+    console.log('[💬] Intent =', intent)
 
-      if (fulfillmentText) return fulfillmentText
-    }
+    if (fulfillmentText) return fulfillmentText
   }
 
   if (text.includes('กี่บาท')) {
