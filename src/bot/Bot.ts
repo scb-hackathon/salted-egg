@@ -48,6 +48,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
     success(`[🦄] Deep Link: ${deeplinkUrl}`)
     debug(`> Transaction = ${transactionId} | User Ref = ${userRefId}`)
 
+    const baseURL = 'https://1d747d7e.ngrok.io'
+    const url = baseURL + `/redirect?url=${encodeURIComponent(deeplinkUrl)}`
+    debug('Redirect URL =', url)
+
     return {
       attachment: {
         type: "template",
@@ -57,7 +61,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
           buttons: [
             {
               type: "web_url",
-              url: 'https://howlonguntilprayuthleaves.com',
+              url,
               title: `จ่ายเงิน`,
               webview_height_ratio: "full"
             }

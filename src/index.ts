@@ -28,6 +28,10 @@ app.get('/', (_req, res) => {
 app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
 
+app.get('/redirect', (req: Request, res: Response) => {
+  return res.redirect(req.query.url)
+})
+
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler({
   json(error: FeathersError, _req: Request, res: Response, next: Function) {
