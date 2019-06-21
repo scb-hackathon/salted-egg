@@ -3,8 +3,12 @@ import {validateChallenge} from 'bot/validateChallenge'
 import {handleMessage} from 'bot/handleMessage'
 import {handlePostback} from 'bot/handlePostback'
 
-interface ServiceOption {
-  query: {[key: string]: string}
+export type ServiceQuery = {
+  [key: string]: string
+}
+
+export interface ServiceOption {
+  query: ServiceQuery
 }
 
 export class WebhookService {
