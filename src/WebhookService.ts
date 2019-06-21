@@ -23,8 +23,7 @@ export class WebhookService {
 
   async create(payload) {
     const {object, entry} = payload
-
-    console.log('> CREATE', payload)
+    console.log('> POST /webhook')
 
     // Checks this is an event from a page subscription
     if (object === 'page') {
@@ -36,7 +35,7 @@ export class WebhookService {
 
         if (!event) {
           console.log('🦄 WTF: This should not happen!')
-          continue
+          return
         }
 
         const {message, postback} = event
