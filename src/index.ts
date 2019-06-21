@@ -19,14 +19,14 @@ app.use(express.urlencoded({ extended: true }))
 // Set up REST transport using Express
 app.configure(express.rest())
 
-// Set up an error handler that gives us nicer errors
-app.use(express.errorHandler())
-
 app.get('/', (_req, res) => {
   res.send({status: 'OK Then!'})
 })
 
 app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
+
+// Set up an error handler that gives us nicer errors
+app.use(express.errorHandler())
 
 app.listen(PORT)
