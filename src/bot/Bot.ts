@@ -18,7 +18,7 @@ export interface BotContext {
 
 const match = (regex: RegExp, text: string) => {
   const m = regex.exec(text)
-  if (!m) return false
+  if (!m) return ''
 
   return m[1]
 }
@@ -34,6 +34,8 @@ function getItemName(text: string) {
   return item.replace(priceRegex, '')
 }
 
+const payAmountRegex = /\/pay (\d+)/
+
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string | object> {
   const {text} = message
 
@@ -42,7 +44,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
   }
 
   if (text.includes('/pay')) {
-    const deeplink = await getDeeplink(9000)
+    const amountText = match(payAmountRegex, text)
+    const amount = parseInt(amountText || '100', 10)
+
+    const deeplink = await getDeeplink(amount)
     const {deeplinkUrl, transactionId, userRefId} = deeplink
 
     success(`[🦄] Deep Link: ${deeplinkUrl}`)
@@ -57,7 +62,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<string
         type: "template",
         payload: {
           template_type: "button",
-          text: "สินค้าชิ้นนี้ราคา 900 บาทนะคะ",
+          text: `สินค้าชิ้นนี้ราคา ${amount} บาทนะคะ`,
           buttons: [
             {
               type: "web_url",
