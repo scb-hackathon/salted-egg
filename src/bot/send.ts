@@ -26,13 +26,11 @@ export async function send(sender: string, response: any) {
 
     console.log('✅  Reply Request is sent!')
   } catch (err) {
-    console.log('🔥 Reply Error!')
-
     if (err.response) {
       const {data} = err.response
 
       if (data.error) {
-        debug(`🔥 Error Detail: ${data.error.message}`)
+        debug(`🔥 Reply Error: ${data.error.message}`)
       }
     }
   }
