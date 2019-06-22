@@ -1,6 +1,6 @@
-import uuid from 'uuid'
+import uuid from '@types/uuid'
 import {wtf} from 'bot/handleMessage'
-import {QueryResult, SessionsClient} from 'dialogflow'
+import {QueryResult, SessionsClient} from '@types/dialogflow'
 
 const PROJECT_ID = 'sellerbot-th1-ucuhdp'
 

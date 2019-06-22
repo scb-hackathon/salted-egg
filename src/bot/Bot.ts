@@ -5,7 +5,7 @@ import {Cart, db} from 'db'
 import {requestToPay} from 'bot/requestToPay'
 import {handleDialogflow} from 'bot/handleDialogflow'
 import {buildReceipt} from 'receipt'
-import {setPersistentMenu} from 'setPersistentMenu'
+import {setPersistentMenu} from 'src/bot-actions/setPersistentMenu'
 import {viewProductsList} from 'viewProductsList'
 import {getProductsCarousel} from 'getProductsCarousel'
 

@@ -1,4 +1,4 @@
-import {getDeeplink} from 'getDeeplink'
+import {getDeeplink} from 'src/deeplink/getDeeplink'
 import {debug, success} from 'logs'
 
 const {BASE_URL} = process.env
