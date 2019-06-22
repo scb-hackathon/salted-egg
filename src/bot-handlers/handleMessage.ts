@@ -1,26 +1,18 @@
-import {Bot, BotContext} from 'bot'
+import {Bot} from 'bot'
 
-import {createReply} from 'bot/create-reply'
 import {debug, wtf} from 'utils/logs'
-import {botStateMap, BotStateMap, makeSetState} from 'bot/state'
+import {initContext} from 'bot/init-context'
 
 export async function handleMessage(senderID: string, message: any) {
   const {text} = message
   if (!text) return wtf('No text in message!')
 
-  const reply = createReply(senderID)
-  const state = botStateMap[senderID]
-
   console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
-  try {
-    const context: BotContext = {
-      sender: senderID,
-      reply,
-      state,
-      setState: makeSetState(senderID)
-    }
+  const context = initContext(senderID)
+  const {reply} = context
 
+  try {
     debug('--- BOT START ---')
 
     const result = await Bot(message, context)

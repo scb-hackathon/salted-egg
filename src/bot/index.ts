@@ -1,5 +1,3 @@
-import {QueryResult} from 'dialogflow'
-
 import {Cart, db} from 'utils/db'
 
 import {addToCart} from 'bot-actions/addToCart'
@@ -48,7 +46,7 @@ export function match(regex: RegExp, text: string) {
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
-  const {sender, state, setState} = ctx
+  const {sender, state} = ctx
 
   const rtp = (amount: number) => requestToPay(amount, sender)
 

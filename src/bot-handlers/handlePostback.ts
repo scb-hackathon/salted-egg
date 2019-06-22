@@ -1,10 +1,9 @@
 import {BotContext} from 'bot'
 import {debug, wtf} from 'utils/logs'
-import {createReply} from 'bot/create-reply'
 import {performOnboarding} from 'bot/onboarding'
 import {Product} from 'utils/db'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {botStateMap, BotStateMap, makeSetState} from 'bot/state'
+import {initContext} from 'bot/init-context'
 
 interface Postback {
   title: string,
@@ -29,7 +28,7 @@ export function parsePostbackAction(payload: string): PostbackAction | false {
 }
 
 export async function executePostbackAction(action: PostbackAction, ctx: BotContext) {
-  const {reply, state, setState} = ctx
+  const {reply, setState} = ctx
   let {type, payload} = action
 
   console.info(`>> Postback Action: ${type} =>`, payload)
@@ -53,15 +52,8 @@ export async function handlePostback(senderID: string, postback: Postback) {
 
   debug(`>> Handling Postback: ${title} (${payload})`)
 
-  const reply = createReply(senderID)
-  const state = botStateMap[senderID]
-
-  const context: BotContext = {
-    sender: senderID,
-    reply,
-    state,
-    setState: makeSetState(senderID)
-  }
+  const context = initContext(senderID)
+  const {reply} = context
 
   if (payload === 'DISPLAY_CATALOGUE_CAROUSEL') {
     await reply('เลือกดูสินค้าได้เลยนะคะ 📙')
