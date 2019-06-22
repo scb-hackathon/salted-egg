@@ -65,6 +65,7 @@ function getBuyItemName(text: string) {
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
+  const {reply} = ctx
 
   const rtp = (amount: number) => requestToPay(amount, ctx.sender)
 
@@ -158,16 +159,16 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     // const {name, price} = products
     // console.log(`>> Items in cart: ${name} (${price} THB)`)
 
-    await ctx.reply(`ตอนนี้คุณมี ${count} อย่างในตระกร้า รวมกัน ${totalPrice} บาทค่ะ`)
+    await reply(`ตอนนี้คุณมี ${count} อย่างในตระกร้า รวมกัน ${totalPrice} บาทค่ะ`)
 
     for (let index in list) {
       const product = list[index]
 
-      await ctx.reply(`${index}) ${product.name} - ราคา ${product.price} บาท`)
+      await reply(`${index}) ${product.name} - ราคา ${product.price} บาท`)
     }
 
     const receipt = buildReceipt(list)
-    await ctx.reply(receipt)
+    await reply(receipt)
 
     console.log(`>> Customer is ready to buy ${count} items for ${totalPrice} THB! 🎉`)
 

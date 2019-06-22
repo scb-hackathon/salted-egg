@@ -45,8 +45,6 @@ export class WebhookService {
         }
 
         if (postback) {
-          console.log('> Postback =', postback)
-
           return handlePostback(senderID, postback)
         }
 

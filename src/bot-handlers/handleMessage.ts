@@ -1,15 +1,6 @@
 import {Bot, BotContext} from 'bot'
-import {send} from 'messenger/send'
 
-function createReply(sid: string) {
-  return function reply(response: string | object) {
-    if (typeof response === 'string') {
-      return send(sid, {text: response})
-    }
-
-    return send(sid, response)
-  }
-}
+import {createReply} from 'bot/create-reply'
 
 export function wtf(...args: any[]) {
   console.error(`[🔥]`, ...args)
