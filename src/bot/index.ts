@@ -58,17 +58,17 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   const rtp = (amount: number) => requestToPay(amount, sender)
 
+  if (text.includes('/reset')) {
+    await resetState(ctx)
+
+    return 'Bot status is reset! 🦄'
+  }
+
   if (text.includes('/qr')) {
     let amount = match(/\/qr (\d+)/, text)
     if (!amount) amount = "100"
 
     return payByQRCode(amount, sender)
-  }
-
-  if (text.includes('/reset')) {
-    await resetState(ctx)
-
-    return 'Cart is reset! 🔥'
   }
 
   if (state.asking === 'QUANTITY') {
