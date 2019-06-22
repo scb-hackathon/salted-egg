@@ -97,7 +97,12 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   }
 
   if (state.asking === 'PAY_NOW_OR_NOT') {
-    if (/ใช่|เลย|ซื้อเลย/.test(text)) {
+    // Handle case where user adds custom stuff :P
+    if (/ซื้อ/.test(text)) {
+      return addToCart(ctx, text)
+    }
+
+    if (/ใช่|เลย|ซื้อเลย|จ่าย/.test(text)) {
       return payNow(ctx)
     }
 
@@ -163,10 +168,6 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   if (/กี่บาท|ราคา/.test(text)) {
     return getQuotation(ctx, text)
-  }
-
-  if (/ซื้อ/.test(text)) {
-    return addToCart(ctx, text)
   }
 
   if (text.includes('จ่าย')) {
