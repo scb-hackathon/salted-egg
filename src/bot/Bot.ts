@@ -1,11 +1,10 @@
 import {QueryResult} from 'dialogflow'
 import {runDialogflow} from 'bot/runDialogflow'
 
-import {Cart, db, Product} from 'db'
+import {Cart, db} from 'db'
 import {requestToPay} from 'bot/requestToPay'
 import {handleDialogflow} from 'bot/handleDialogflow'
 import {buildReceipt} from 'receipt'
-import {call} from 'bot/send'
 import {setPersistentMenu} from 'setPersistentMenu'
 import {viewProductsList} from 'viewProductsList'
 import {getProductsCarousel} from 'getProductsCarousel'
