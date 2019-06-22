@@ -18,6 +18,8 @@ import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuanti
 import {Message} from 'messenger/send'
 import {retrievePaymentMethod} from 'bot-actions/retrievePaymentMethod'
 import {payByQRCode} from 'bot-actions/payByQRCode'
+import {cancelOrder} from 'bot-actions/cancelOrder'
+import {resetState} from 'bot-actions/reset'
 
 const {BASE_URL} = process.env
 
@@ -64,8 +66,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   }
 
   if (text.includes('/reset')) {
-    resetCart(sender)
-    setState({asking: false})
+    await resetState(ctx)
 
     return 'Cart is reset! 🔥'
   }
@@ -129,6 +130,10 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   }
 
   if (state.asking === 'PAYMENT_METHOD') {
+    if (/ยกเลิกสินค้า|ยกเลิก|ยกเลิกออร์เดอร์/.test(text)) {
+      return cancelOrder(ctx)
+    }
+
     return retrievePaymentMethod(ctx, text)
   }
 
