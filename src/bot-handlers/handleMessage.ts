@@ -1,5 +1,5 @@
-import {Bot, BotContext} from '../bot/Bot'
-import {send} from '../bot/send'
+import {Bot, BotContext} from 'bot'
+import {send} from 'messenger/send'
 
 function createReply(sid: string) {
   return function reply(response: string | object) {

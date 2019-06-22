@@ -1,7 +1,8 @@
-import {Request, Response} from '@types/express'
-import {generateDeepLink} from 'generateDeepLink'
-import {PaymentRedirectHTML} from 'PaymentRedirectHTML'
-import {debug, success} from 'logs'
+import {Request, Response} from 'express'
+
+import {debug, success} from 'utils/logs'
+import {PaymentRedirectHTML} from 'deeplink/PaymentRedirectHTML'
+import {generateDeepLink} from 'deeplink/generateDeepLink'
 
 export async function PayRoute(req: Request, res: Response) {
   const {account, number} = req.params

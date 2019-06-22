@@ -1,5 +1,5 @@
 import {Request, Response} from 'express'
-import {PaymentRedirectHTML} from 'PaymentRedirectHTML'
+import {PaymentRedirectHTML} from 'deeplink/PaymentRedirectHTML'
 
 export function RedirectRoute(req: Request, res: Response) {
   const {url} = req.query

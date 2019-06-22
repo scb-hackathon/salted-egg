@@ -1,4 +1,4 @@
-import {call} from 'bot/send'
+import {call} from 'messenger/send'
 
 const {BASE_URL} = process.env
 

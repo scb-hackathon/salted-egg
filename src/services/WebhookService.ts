@@ -1,7 +1,8 @@
 import errors from '@feathersjs/errors'
-import {validateChallenge} from 'bot/validateChallenge'
-import {handleMessage} from 'bot/handleMessage'
-import {handlePostback} from 'bot/handlePostback'
+
+import {validateChallenge} from 'messenger/validateChallenge'
+import {handleMessage} from 'bot-handlers/handleMessage'
+import {handlePostback} from 'bot-handlers/handlePostback'
 
 export type ServiceQuery = {
   [key: string]: string

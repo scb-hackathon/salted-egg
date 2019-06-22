@@ -1,5 +1,5 @@
-import {QueryResult} from '@types/dialogflow'
-import {BotResponse} from 'bot/Bot'
+import {QueryResult} from 'dialogflow'
+import {BotResponse} from 'bot'
 
 export function handleDialogflow(dialogflow: QueryResult | null): BotResponse | false {
   if (!dialogflow) return false

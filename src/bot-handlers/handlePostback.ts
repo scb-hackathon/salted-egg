@@ -1,4 +1,4 @@
-import {send} from '../bot/send'
+import {send} from 'messenger/send'
 
 export async function handlePostback(senderID: string, postback: any) {
   const {payload} = postback

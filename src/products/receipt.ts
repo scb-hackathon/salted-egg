@@ -1,4 +1,4 @@
-import {Cart} from 'db'
+import {Cart} from 'utils/db'
 
 export function buildReceipt(items: Cart[]) {
   // let image = 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F7821b17e-28f5-11e4-8b81-00144feabdc0?fit=scale-down&source=next&width=700'

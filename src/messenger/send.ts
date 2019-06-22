@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {debug, success} from 'logs'
+import {debug, success} from 'utils/logs'
 
 // Your verify token. Should be a random string.
 const {PAGE_ACCESS_TOKEN} = process.env
