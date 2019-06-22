@@ -1,7 +1,7 @@
-const baseURL = 'https://1d747d7e.ngrok.io'
+const {BASE_URL} = process.env
 
 function Card(_, index: number) {
-  const url = `${baseURL}/product_list`
+  const url = `${BASE_URL}/product_list`
 
   return {
     'title': "Lung Too's Store",

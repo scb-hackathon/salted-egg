@@ -3,6 +3,8 @@ import {debug} from 'WebhookService'
 import {getDeeplink} from 'getDeeplink'
 import {db, DeepLink} from 'db'
 
+const {BASE_URL} = process.env
+
 export async function requestToPay(amount: number, sender: string) {
   const deeplink = await getDeeplink(amount)
   const {deeplinkUrl, transactionId, userRefId} = deeplink
@@ -10,11 +12,10 @@ export async function requestToPay(amount: number, sender: string) {
   success(`[🦄] Deep Link: ${deeplinkUrl}`)
   debug(`> Transaction = ${transactionId} | User Ref = ${userRefId}`)
 
-  const baseURL = 'https://1d747d7e.ngrok.io'
-  const callback = `${baseURL}/deep_callback?txn=${transactionId}&ref=${userRefId}`
+  const callback = `${BASE_URL}/deep_callback?txn=${transactionId}&ref=${userRefId}`
   const deepCallbackURL = `${deeplinkUrl}?callback_url=${callback}`
   const encoded = Buffer.from(deepCallbackURL, 'binary').toString('base64')
-  const url = baseURL + `/redirect?url=${encoded}`
+  const url = BASE_URL + `/redirect?url=${encoded}`
 
   const deepLinkRecord: DeepLink = {
     sender,

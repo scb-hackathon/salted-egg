@@ -1,7 +1,9 @@
 import {call} from 'bot/send'
 
+const {BASE_URL} = process.env
+
 export async function setPersistentMenu() {
-  const baseURL = 'https://1d747d7e.ngrok.io'
+  console.log('>> Setting Persistent Menu')
 
   await call('messenger_profile', {
     "persistent_menu": [
@@ -12,7 +14,7 @@ export async function setPersistentMenu() {
           {
             "type": "web_url",
             "title": "Shop now",
-            "url": baseURL + '/product_list',
+            "url": BASE_URL + '/product_list',
             "webview_height_ratio": "compact"
           }
         ]
