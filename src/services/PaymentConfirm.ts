@@ -1,8 +1,8 @@
 import {Request, Response} from 'express'
 import {verifyQRCode} from 'qr/verify'
 import {debug} from 'utils/logs'
-import {thankYou} from 'bot-actions/thankYou'
 import {db, QRCode} from 'utils/db'
+import {thankYouQR} from 'bot-actions/thankYouQR'
 
 // {
 //   payeeProxyId: '719492347382944',
@@ -65,7 +65,7 @@ export async function PaymentConfirmRoute(req: Request, res: Response) {
   if (item) {
     const {sender: fbSender} = item
 
-    thankYou(fbSender).then()
+    thankYouQR(fbSender, verifyResult).then()
   }
 
   res.send('OK')
