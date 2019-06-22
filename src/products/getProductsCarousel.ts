@@ -1,28 +1,36 @@
 import {randomImage} from 'utils/randomImage'
+import {Product} from 'utils/db'
 
-const {BASE_URL} = process.env
+const productNames = ['ชานมไข่มุก', 'ชานมเย็น', 'ชาไทย', 'ชาดำเย็น', 'ชานมสตรอว์เบอรรี่']
 
-function Card() {
-  const item = "ชานมไข่มุก"
-  const url = `${BASE_URL}/product_list`
+function randomizeProductName(list = productNames) {
+  return list[Math.floor(Math.random() * list.length)]
+}
+
+function getRandomItem(): Product {
+  const name = randomizeProductName()
   const price = Math.floor(Math.random() * 1000)
 
-  const payload = JSON.stringify({
-    type: 'BUY',
-    payload: {
-      item,
-      price,
-    }
-  })
+  return {name, price}
+}
+
+const Action = (type: string) => (payload: object) =>
+  JSON.stringify({type, payload})
+
+const BuyAction = Action('BUY')
+
+function Card() {
+  const item = getRandomItem()
+  const payload = BuyAction(item)
 
   return {
-    'title': item,
+    'title': item.name,
     'image_url': randomImage(1200, 700),
-    'subtitle': `ราคา ${price} บาท`,
+    'subtitle': `ราคา ${item.price} บาท`,
     'default_action': {
-      'type': 'web_url',
-      url,
-      'webview_height_ratio': 'compact',
+      'type': 'postback',
+      title: 'ซื้อ',
+      payload: 'PRODUCT_CAROUSEL_DEFAULT_ACTION',
     },
     'buttons': [
       {

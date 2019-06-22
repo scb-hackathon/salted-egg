@@ -2,6 +2,7 @@ import {BotContext} from 'bot'
 import {debug, wtf} from 'utils/logs'
 import {createReply} from 'bot/create-reply'
 import {performOnboarding} from 'bot/onboarding'
+import {Product} from 'utils/db'
 
 interface Postback {
   title: string,
@@ -27,12 +28,14 @@ export function parsePostbackAction(payload: string): PostbackAction | false {
 
 export async function executePostbackAction(action: PostbackAction, ctx: BotContext) {
   const {reply} = ctx
-  const {type, payload} = action
+  let {type, payload} = action
 
   console.info(`>> Postback Action: ${type} =>`, payload)
 
   if (type === 'BUY') {
-    await reply(`${payload.item}ราคา ${payload.price} บาทค่ะ จะซื้อกี่ชิ้นดีคะ?`)
+    const {name, price} = payload as Product
+
+    await reply(`${name}ราคา ${price} บาทค่ะ จะซื้อกี่ชิ้นดีคะ?`)
 
     return
   }
