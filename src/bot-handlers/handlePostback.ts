@@ -4,6 +4,7 @@ import {debug, wtf} from 'utils/logs'
 import {buildContext} from 'bot/build-context'
 import {performOnboarding} from 'bot/onboarding'
 import {getProductsCarousel} from 'products/getProductsCarousel'
+import {payLater, payNow} from 'bot-actions/handleQuantityReceived'
 
 interface Postback {
   title: string,
@@ -59,6 +60,18 @@ export async function handlePostback(senderID: string, postback: Postback) {
     await reply('เลือกดูสินค้าได้เลยนะคะ 📙')
     const carousel = await getProductsCarousel()
     await reply(carousel)
+
+    return
+  }
+
+  if (payload === 'Q_PAY_NOW') {
+    await payNow(context)
+
+    return
+  }
+
+  if (payload === 'Q_BROWSE_MORE') {
+    await payLater(context)
 
     return
   }

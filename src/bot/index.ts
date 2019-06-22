@@ -14,11 +14,11 @@ import {handleDialogflow} from 'bot-handlers/handleDialogflow'
 import {buildReceipt} from 'products/receipt'
 import {getProductsCarousel} from 'products/getProductsCarousel'
 import {wtf} from 'utils/logs'
-import {handleQuantityReceived} from 'bot-actions/handleQuantityReceived'
+import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuantityReceived'
 
 import {Message} from 'messenger/send'
 
-export type BotResponse = string | Message | false
+export type BotResponse = string | Message | boolean
 
 export type Question = 'QUANTITY' | 'PAY_NOW_OR_NOT'
 
@@ -46,7 +46,7 @@ export function match(regex: RegExp, text: string) {
 
 export async function Bot(message: Message, ctx: BotContext): Promise<BotResponse> {
   const {text = ''} = message
-  const {reply, sender, state, setState} = ctx
+  const {sender, state, setState} = ctx
 
   const rtp = (amount: number) => requestToPay(amount, sender)
 
@@ -67,23 +67,11 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   if (state.asking === 'PAY_NOW_OR_NOT') {
     if (/ใช่|เลย/.test(text)) {
-      setState({asking: false})
-
-      await reply('โอเคค่ะ จ่ายเลยละกันเนาะ 🦄')
-      handlePayment(ctx).then()
-
-      return false
+      return payNow(ctx)
     }
 
     if (/ไม่|เดี๋ยวค่อย/.test(text)) {
-      setState({asking: false})
-
-      await reply('โอเคค่ะ ลองดูสินค้าเพิ่มเติมก่อนนะคะ 😇')
-
-      const carousel = getProductsCarousel()
-      await reply(carousel)
-
-      return false
+      return payLater(ctx)
     }
 
     return 'ต้องการจะซื้อเลยไหมคะ?'
