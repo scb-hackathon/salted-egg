@@ -4,7 +4,7 @@ import {PayService} from 'PayService'
 
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
-import {WebhookService} from 'WebhookService'
+import {debug, WebhookService} from 'WebhookService'
 import {Request, Response} from 'express'
 import {FeathersError} from '@feathersjs/errors'
 
@@ -12,8 +12,9 @@ import {PaymentRedirectHTML} from 'PaymentRedirectHTML'
 import {PaymentCallbackHTML} from 'PaymentCallbackHTML'
 import {match} from 'bot/Bot'
 import {db, DeepLink} from 'db'
-import {send} from 'bot/send'
+import {send, success} from 'bot/send'
 import {ProductListHTML} from 'ProductListHTML'
+import {generateDeepLink} from 'generateDeepLink'
 
 const {PORT} = process.env
 
@@ -32,7 +33,6 @@ app.get('/', (_req, res) => {
   res.send({status: 'OK Then!'})
 })
 
-app.use('/pay', new PayService())
 app.use('/webhook', new WebhookService())
 
 app.get('/redirect', (req: Request, res: Response) => {
@@ -49,6 +49,16 @@ app.get('/product_list', async (req: Request, res: Response) => {
   const {query} = req
 
   res.send(ProductListHTML)
+})
+
+app.get('/pay/:account/:number', async (req: Request, res: Response) => {
+  const {account, number} = req.params
+  debug(`> /pay/${account}/${number}`)
+
+  const {deepLink} = await generateDeepLink(number)
+  success(`> /pay/${account}/${number} -> ${deepLink}`)
+
+  res.send(PaymentRedirectHTML.replace('{{DECODED}}', deepLink))
 })
 
 app.get('/deep_callback', async (req: Request, res: Response) => {
