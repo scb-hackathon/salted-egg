@@ -52,11 +52,14 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   const rtp = (amount: number) => requestToPay(amount, sender)
 
   if (text.includes('/qr')) {
+    let amount = match(/\/qr (\d+)/, text)
+    if (!amount) amount = "100"
+
     return {
       attachment: {
         type: 'image',
         payload: {
-          'url': BASE_URL + '/qr/0812390813/9000',
+          'url': BASE_URL + '/qr/0812390813/' + amount,
           'is_reusable': true,
         },
       },
