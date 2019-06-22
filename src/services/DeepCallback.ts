@@ -4,6 +4,7 @@ import {match} from 'bot'
 import {db, DeepLink} from 'utils/db'
 import {thankYou} from 'bot-actions/thankYou'
 import {PaymentCallbackHTML} from 'deeplink/PaymentCallbackHTML'
+import {success} from 'utils/logs'
 
 export async function DeepCallbackRoute(req: Request, res: Response) {
   const {query} = req
@@ -14,6 +15,8 @@ export async function DeepCallbackRoute(req: Request, res: Response) {
 
   const htmlResponse = PaymentCallbackHTML
     .replace('{{STATUS}}', status)
+
+  success(`Customer ${sender} bought our product! 🎉`)
 
   thankYou(sender).then()
 
