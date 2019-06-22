@@ -132,7 +132,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
     if (!name) return `สินค้าหมดแล้วค่ะ ขออภัยด้วยนะคะ`
 
-    let price = PriceMap[name]
+    let price = PriceMap[name.trim()]
     if (!price) price = Math.floor(Math.random() * 1000)
 
     console.log(`>> Customer added ${name} (${price} THB) to cart! 😎`)
