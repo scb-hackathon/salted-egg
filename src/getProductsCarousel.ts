@@ -1,6 +1,6 @@
 const {BASE_URL} = process.env
 
-function Card(_, index: number) {
+function Card(_: any, index: number) {
   const url = `${BASE_URL}/product_list`
 
   return {
