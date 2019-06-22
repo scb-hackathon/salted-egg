@@ -120,7 +120,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
         payload: 'PAY_BY_QR_CODE'
       }, {
         content_type: 'text',
-        title: 'scb.best 🌍',
+        title: 'ให้เพื่อนจ่าย 🌍',
         payload: 'PAY_BY_SCB_BEST'
       }]
     }
