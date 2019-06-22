@@ -15,11 +15,9 @@ export async function handleMessage(senderID: string, message: any) {
     debug('--- BOT START ---')
 
     const result = await Bot(message, context)
-    if (!result) {
-      wtf(`Bot returns no result:`, context.sender)
 
-      return reply(`...`)
-    }
+    // The bot already handles the reply by itself.
+    if (!result) return debug('Bot returns no result.')
 
     debug('--- BOT END ---')
 

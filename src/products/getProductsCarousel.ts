@@ -1,5 +1,6 @@
 import {randomImage} from 'utils/randomImage'
 import {Product} from 'utils/db'
+import {Action} from 'utils/action'
 
 const productNames = ['ชานมไข่มุก', 'ชานมเย็น', 'ชาไทย', 'ชาดำเย็น', 'ชานมสตรอว์เบอรรี่']
 
@@ -13,9 +14,6 @@ function getRandomItem(): Product {
 
   return {name, price}
 }
-
-const Action = (type: string) => (payload: object) =>
-  JSON.stringify({type, payload})
 
 const BuyAction = Action('BUY')
 

@@ -14,12 +14,13 @@ import {handleDialogflow} from 'bot-handlers/handleDialogflow'
 import {buildReceipt} from 'products/receipt'
 import {getProductsCarousel} from 'products/getProductsCarousel'
 import {wtf} from 'utils/logs'
+import {handleQuantityReceived} from 'bot-actions/handleQuantityReceived'
 
 interface ChatMessage {
   text: string
 }
 
-export type BotResponse = string | object
+export type BotResponse = string | object | false
 
 export type Question = 'QUANTITY'
 
@@ -47,7 +48,7 @@ export function match(regex: RegExp, text: string) {
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
-  const {sender, state, setState} = ctx
+  const {reply, sender, state, setState} = ctx
 
   const rtp = (amount: number) => requestToPay(amount, sender)
 
@@ -57,15 +58,18 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
     if (quantity) {
       setState({asking: false})
+      handleQuantityReceived(ctx, quantity).then()
 
-      console.info('Item Quantity =', quantity)
-
-      return `โอเคค่ะ รับเป็น ${quantity} ชิ้นนะคะ`
+      return false
     }
 
     wtf(`>> Input is not a number: ${text}`)
 
     return `ต้องการซื้อกี่ชิ้นดีคะ?`
+  }
+
+  if (text.includes('/hqr')) {
+    return handleQuantityReceived(ctx, 1000).then()
   }
 
   if (text.includes('/list')) {
