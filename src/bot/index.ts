@@ -16,11 +16,9 @@ import {getProductsCarousel} from 'products/getProductsCarousel'
 import {wtf} from 'utils/logs'
 import {handleQuantityReceived} from 'bot-actions/handleQuantityReceived'
 
-interface ChatMessage {
-  text: string
-}
+import {Message} from 'messenger/send'
 
-export type BotResponse = string | object | false
+export type BotResponse = string | Message | false
 
 export type Question = 'QUANTITY'
 
@@ -46,8 +44,8 @@ export function match(regex: RegExp, text: string) {
   return m[1]
 }
 
-export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
-  const {text} = message
+export async function Bot(message: Message, ctx: BotContext): Promise<BotResponse> {
+  const {text = ''} = message
   const {reply, sender, state, setState} = ctx
 
   const rtp = (amount: number) => requestToPay(amount, sender)

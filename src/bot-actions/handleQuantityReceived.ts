@@ -11,14 +11,14 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
     quick_replies: [
       {
         "content_type": "text",
-        "title": "Let me see.",
-        "payload": 'Q_BROWSE_MORE',
+        "title": "Hello",
+        "payload": 'Hello',
       },
-      // {
-      //   "content_type": "text",
-      //   "title": "ไม่ล่ะ ซื้อเลยละกัน 👌🏻",
-      //   "payload": "Q_PAY_NOW",
-      // }
+      {
+        "content_type": "text",
+        "title": "Hello",
+        "payload": "Hello",
+      }
     ]
   })
 }

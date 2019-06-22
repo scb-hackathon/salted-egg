@@ -11,7 +11,7 @@ interface QuickReply {
   image_url?: string
 }
 
-interface Message {
+export interface Message {
   text?: string
   attachment?: any
   quick_replies?: QuickReply[]
