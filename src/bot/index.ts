@@ -128,7 +128,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   }
 
   if (state.asking === 'PAYMENT_METHOD') {
-    return retrievePaymentMethod(ctx)
+    return retrievePaymentMethod(ctx, text)
   }
 
   if (text.includes('/paymentmethod')) {

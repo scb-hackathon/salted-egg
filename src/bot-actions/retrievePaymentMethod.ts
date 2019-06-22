@@ -6,7 +6,7 @@ import {requestToPay} from 'bot-actions/requestToPay'
 
 const {BASE_URL, BILLER_ID} = process.env
 
-export async function retrievePaymentMethod(ctx: BotContext, text: string): Promise<BotResponse> {
+export async function retrievePaymentMethod(ctx: BotContext, text?: string): Promise<BotResponse> {
   const {state, setState, sender, reply} = ctx
   setState({asking: 'PAYMENT_METHOD'})
 
