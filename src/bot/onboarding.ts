@@ -7,6 +7,6 @@ export async function performOnboarding(ctx: BotContext)  {
   await reply('ร้าน Salted Egg & Bubble Tea สวัสดีครับ! 💖')
   await reply('ลองเลือกดูสินค้าก่อนได้เลยครับ 😃')
 
-  const carousel = getProductsCarousel()
+  const carousel = await getProductsCarousel()
   await reply(carousel)
 }

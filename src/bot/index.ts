@@ -141,7 +141,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
     db.get('cart').push(item).write()
 
-    return `เพิ่ม${name} ลงตะกร้าแล้วค่ะ ราคา ${price} บาทแล้วนะคะ 💖`
+    return `เพิ่ม${name}ลงตะกร้าแล้วค่ะ ราคา ${price} บาทแล้วนะคะ 💖`
   }
 
   if (text.includes('จ่าย')) {
