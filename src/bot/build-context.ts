@@ -5,7 +5,7 @@ import {createReply} from 'bot/create-reply'
 
 export function buildContext(sender: string): BotContext {
   const reply = createReply(sender)
-  const state = botStateMap[sender]
+  const state = botStateMap[sender] || {}
   const setState = makeSetState(sender)
 
   const context: BotContext = {
