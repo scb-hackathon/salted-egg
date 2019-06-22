@@ -3,6 +3,7 @@ import {debug, wtf} from 'utils/logs'
 import {createReply} from 'bot/create-reply'
 import {performOnboarding} from 'bot/onboarding'
 import {Product} from 'utils/db'
+import {getProductsCarousel} from 'products/getProductsCarousel'
 
 interface Postback {
   title: string,
@@ -34,7 +35,6 @@ export async function executePostbackAction(action: PostbackAction, ctx: BotCont
 
   if (type === 'BUY') {
     const {name, price} = payload as Product
-
     await reply(`${name}ราคา ${price} บาทค่ะ จะซื้อกี่ชิ้นดีคะ?`)
 
     return
@@ -55,6 +55,14 @@ export async function handlePostback(senderID: string, postback: Postback) {
   const context: BotContext = {
     sender: senderID,
     reply,
+  }
+
+  if (payload === 'DISPLAY_CATALOGUE_CAROUSEL') {
+    await reply('เลือกดูสินค้าได้เลยนะคะ 📙')
+    const carousel = await getProductsCarousel()
+    await reply(carousel)
+
+    return
   }
 
   const action = parsePostbackAction(payload)
