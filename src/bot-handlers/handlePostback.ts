@@ -4,7 +4,7 @@ import {debug, wtf} from 'utils/logs'
 import {buildContext} from 'bot/build-context'
 import {performOnboarding} from 'bot/onboarding'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {payLater, payNow} from 'bot-actions/handleQuantityReceived'
+import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuantityReceived'
 
 interface Postback {
   title: string,
@@ -36,7 +36,14 @@ export async function executePostbackAction(action: PostbackAction, ctx: BotCont
 
   if (type === 'BUY') {
     const {name, price} = payload as Product
-    await reply(`${name}ราคา ${price} บาทค่ะ จะซื้อกี่ชิ้นดีคะ?`)
+    await reply({
+      text: `${name}ราคา ${price} บาทค่ะ จะซื้อกี่ชิ้นดีคะ?`,
+      quick_replies: [{
+        content_type: 'text',
+        title: 'ชิ้นเดียว 🍭',
+        payload: 'BUY_ONLY_ONE'
+      }]
+    })
 
     setState({asking: 'QUANTITY'})
 
@@ -54,12 +61,19 @@ export async function handlePostback(senderID: string, postback: Postback) {
   debug(`>> Handling Postback: ${title} (${payload})`)
 
   const context = buildContext(senderID)
-  const {reply} = context
+  const {reply, setState} = context
 
   if (payload === 'DISPLAY_CATALOGUE_CAROUSEL') {
     await reply('เลือกดูสินค้าได้เลยนะคะ 📙')
     const carousel = await getProductsCarousel()
     await reply(carousel)
+
+    return
+  }
+
+  if (payload === 'BUY_ONLY_ONE') {
+    setState({asking: false})
+    handleQuantityReceived(context, 1).then()
 
     return
   }
