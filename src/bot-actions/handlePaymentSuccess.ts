@@ -1,4 +1,5 @@
 import {BotContext, BotResponse} from 'bot'
+import {getProductsCarousel} from 'products/getProductsCarousel'
 
 export async function handlePaymentSuccess(ctx: BotContext, displayName?: string): Promise<BotResponse> {
   const {reply} = ctx
@@ -25,6 +26,11 @@ export async function handlePaymentSuccess(ctx: BotContext, displayName?: string
       },
     },
   })
+
+  await reply(`ถ้าต้องการซื้ออะไรเพิ่มเติม สามารถสอบถามได้ตลอดเวลาเลยนะคะ ขอบคุณค่า 🙏`)
+
+  const carousel = getProductsCarousel()
+  await reply(carousel)
 
   return false
 }
