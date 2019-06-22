@@ -6,7 +6,6 @@ import {handlePayment} from 'bot-actions/payment'
 import {requestToPay} from 'bot-actions/requestToPay'
 import {getQuotation} from 'bot-actions/getQuotation'
 import {runDialogflow} from 'bot-actions/runDialogflow'
-import {viewProductsList} from 'products/viewProductsList'
 import {setPersistentMenu} from 'bot-actions/setPersistentMenu'
 
 import {handleDialogflow} from 'bot-handlers/handleDialogflow'
@@ -17,6 +16,8 @@ import {wtf} from 'utils/logs'
 import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuantityReceived'
 
 import {Message} from 'messenger/send'
+
+const {BASE_URL} = process.env
 
 export type BotResponse = string | Message | boolean
 
@@ -49,6 +50,18 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   const {sender, state, setState} = ctx
 
   const rtp = (amount: number) => requestToPay(amount, sender)
+
+  if (text.includes('/qr')) {
+    return {
+      attachment: {
+        type: 'image',
+        payload: {
+          'url': BASE_URL + '/qr/0812390813/9000',
+          'is_reusable': true,
+        },
+      },
+    }
+  }
 
   if (text.includes('/reset')) {
     resetCart(sender)
