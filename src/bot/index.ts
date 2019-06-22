@@ -31,14 +31,14 @@ export function match(regex: RegExp, text: string) {
 }
 
 const howMuchItemRegex = /([ก-๙]+|\w+\s?)กี่บาท/
+const howMuchPriceRegex = /([ก-๙]+|\w+\s?)ราคา/
 
 function getItemName(text: string) {
-  const item = match(howMuchItemRegex, text)
-  if (!item) return 'อันนี้'
+  let item = match(howMuchItemRegex, text)
+  if (!item) item = match(howMuchPriceRegex, text)
+  if (!item) item = '🍕'
 
-  const priceRegex = /ราคา/g
-
-  return item.trim().replace(priceRegex, '')
+  return item.trim().replace(/ราคา/g, '')
 }
 
 export function resetCart(sender: string) {
@@ -48,6 +48,18 @@ export function resetCart(sender: string) {
   console.log('>> Resetting Cart for User =', sender)
 
   db.set('cart', newList).write()
+}
+
+// TODO: Replace with persistent DB
+const PriceMap: {[item: string]: number} = {}
+
+
+const buyItemRegex = /ซื้อ\s?([ก-๙]+|\w+\s?)/
+
+function getBuyItemName(text: string) {
+  const item = match(buyItemRegex, text)
+
+  return item.trim()
 }
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
@@ -96,14 +108,29 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     return buildReceipt(list)
   }
 
-  if (text.includes('กี่บาท')) {
+  if (/กี่บาท|ราคา/.test(text)) {
     const name = getItemName(text)
     const price = Math.floor(Math.random() * 1000)
+
+    PriceMap[name] = price
+
+    console.log(`>> Customer asked for price of ${name} (${price} THB) 😃`)
+
+    return `${name}ราคา ${price} บาทค่ะ 🦄`
+  }
+
+  if (/ซื้อ/.test(text)) {
+    const name = getBuyItemName(text)
+    let price = PriceMap[name]
+    if (!price) price = Math.floor(Math.random() * 1000)
+
+    console.log(`>> Customer added ${name} (${price} THB) to cart! 😎`)
+
     const item: Cart = {name, price, buyer: ctx.sender}
 
     db.get('cart').push(item).write()
 
-    return `${name}ราคา ${price} บาทครับ 🦄`
+    return `เพิ่ม ${name} ราคา ${price} บาท ลงตะกร้าแล้วค่ะ 💖`
   }
 
   if (text.includes('จ่าย')) {
@@ -121,7 +148,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     // const {name, price} = products
     // console.log(`>> Items in cart: ${name} (${price} THB)`)
 
-    await ctx.reply(`ตอนนี้คุณมี ${count} อย่างในตระกร้า รวมกัน ${totalPrice} บาทครับ`)
+    await ctx.reply(`ตอนนี้คุณมี ${count} อย่างในตระกร้า รวมกัน ${totalPrice} บาทค่ะ`)
 
     for (let index in list) {
       const product = list[index]
@@ -131,6 +158,8 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
     const receipt = buildReceipt(list)
     await ctx.reply(receipt)
+
+    console.log(`>> Customer is ready to buy ${count} items for ${totalPrice} THB! 🎉`)
 
     return rtp(totalPrice)
   }
