@@ -2,7 +2,7 @@ import {BotContext, match} from 'bot'
 import {Cart, CurrentItemMap, db, PriceMap} from 'utils/db'
 import {wtf} from 'utils/logs'
 
-const buyItemRegex = /ซื้อ|เอา\s?([ก-๙]+|\w+\s?)/
+const buyItemRegex = /ซื้อ\s?([ก-๙]+|\w+\s?)/
 
 function getBuyItemName(text: string) {
   const item = match(buyItemRegex, text)

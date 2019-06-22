@@ -106,7 +106,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
       return payLater(ctx)
     }
 
-    if (/ซื้อ|เอา\s?([ก-๙]+|\w+\s?)/.test(text)) {
+    if (/ซื้อ\s?([ก-๙]+|\w+\s?)/.test(text)) {
       return addToCart(ctx, text)
     }
 
