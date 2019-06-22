@@ -65,15 +65,11 @@ export async function handlePostback(senderID: string, postback: Postback) {
   }
 
   if (payload === 'Q_PAY_NOW') {
-    await payNow(context)
-
-    return
+    return payNow(context)
   }
 
   if (payload === 'Q_BROWSE_MORE') {
-    await payLater(context)
-
-    return
+    return payLater(context)
   }
 
   const action = parsePostbackAction(payload)
