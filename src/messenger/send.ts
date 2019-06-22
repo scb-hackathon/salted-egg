@@ -33,8 +33,6 @@ export async function send(sender: string, message: Message) {
     const replies = quick_replies.map(x => x.title).join(', ')
 
     console.log(`[💬] Quick Replies:`, replies)
-
-    debug(`>>> QUICK REPLY PAYLOAD: ${JSON.stringify(payload, null, 2)}`)
   }
 
   if (text) {
