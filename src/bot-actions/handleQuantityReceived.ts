@@ -10,12 +10,14 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
     text: 'ต้องการรับอะไรเพิ่มไหมคะ? 💬',
     quick_replies: [
       {
-        "content_type": "user_email",
+        "content_type": "text",
+        "title": "ขอดูก่อนนะ 📙",
+        "payload": 'Q_BROWSE_MORE',
       },
       {
         "content_type": "text",
-        "title": "Hello",
-        "payload": "Hello",
+        "title": "ไม่ล่ะ ซื้อเลยละกัน 👌🏻",
+        "payload": "Q_PAY_NOW",
       }
     ]
   })
