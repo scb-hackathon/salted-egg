@@ -24,14 +24,9 @@ function Card() {
   const payload = BuyAction(item)
 
   return {
-    'title': item.name,
+    'title': `${item.name} ${item.price} บาท 🦄`,
     'image_url': randomImage(1200, 700),
-    'subtitle': `ราคา ${item.price} บาท`,
-    'default_action': {
-      'type': 'postback',
-      title: 'ซื้อ',
-      payload: 'PRODUCT_CAROUSEL_DEFAULT_ACTION',
-    },
+    'subtitle': `ชาสกัดบริสุทธิ์จากเยอรมัน บำรุงร่างกาย`,
     'buttons': [
       {
         'type': 'postback',
