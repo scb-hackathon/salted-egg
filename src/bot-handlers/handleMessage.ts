@@ -1,7 +1,7 @@
 import {Bot, BotContext} from 'bot'
 
 import {createReply} from 'bot/create-reply'
-import {wtf} from 'utils/logs'
+import {debug, wtf} from 'utils/logs'
 
 export async function handleMessage(senderID: string, message: any) {
   const {text} = message
@@ -16,12 +16,16 @@ export async function handleMessage(senderID: string, message: any) {
       reply,
     }
 
-    console.log('--- BOT START ---')
+    debug('--- BOT START ---')
 
     const result = await Bot(message, context)
-    if (!result) return
+    if (!result) {
+      wtf(`Bot returns no result:`, context.sender)
 
-    console.log('--- BOT END ---')
+      return reply(`...`)
+    }
+
+    debug('--- BOT END ---')
 
     return reply(result)
   } catch (error) {

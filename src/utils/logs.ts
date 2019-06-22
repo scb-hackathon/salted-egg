@@ -8,6 +8,10 @@ export function success(text: string, ...args: any[]) {
   console.info(chalk.green(chalk.bold(text)), ...args)
 }
 
-export function wtf(...args: any[]) {
-  console.error(`[🔥]`, ...args)
+export function wtf(text: string, ...args: any[]) {
+  console.error(chalk.red(chalk.bold(`[🔥] ${text}`)), ...args)
+}
+
+export function info(text: string, ...args: any[]) {
+  console.info(chalk.blue(chalk.bold(`[🤔] ${text}`)), ...args)
 }

@@ -1,11 +1,19 @@
 import {QueryResult} from 'dialogflow'
 import {BotResponse} from 'bot'
+import {info} from 'utils/logs'
 
 export function handleDialogflow(dialogflow: QueryResult | null): BotResponse | false {
   if (!dialogflow) return false
 
-  const {fulfillmentText, parameters} = dialogflow
+  const {fulfillmentText, parameters, intent} = dialogflow
   const {fields} = parameters
+  const {displayName: intentName} = intent
+
+  if (intentName === 'how-to-pay') {
+    info('Intent = How to Pay?')
+
+    return fulfillmentText
+  }
 
   if (fields.ProductNames) {
     const {stringValue: productName} = fields.ProductNames
