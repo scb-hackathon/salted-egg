@@ -4,13 +4,22 @@ import {debug, success} from 'utils/logs'
 
 const {PAGE_ACCESS_TOKEN} = process.env
 
+interface QuickReply {
+  content_type: 'text' | 'user_phone_number' | 'user_email'
+  title?: string
+  payload?: string
+  image_url?: string
+}
+
 interface Message {
   text?: string
+  attachment?: any
+  quick_replies?: QuickReply[]
 }
 
 export async function send(sender: string, message: Message) {
   if (!message) return
-  const {text} = message
+  const {text, quick_replies} = message
 
   const payload = {
     recipient: {
@@ -18,6 +27,12 @@ export async function send(sender: string, message: Message) {
     },
     message,
     messaging_type: "RESPONSE"
+  }
+
+  if (quick_replies) {
+    const replies = quick_replies.map(x => x.title).join(', ')
+
+    console.log(`[💬] Quick Replies:`, replies)
   }
 
   if (text) {

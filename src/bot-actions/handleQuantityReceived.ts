@@ -11,7 +11,7 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
     quick_replies: [
       {
         "content_type": "text",
-        "title": "ขอดูก่อนนะ 📙",
+        "title": "Let me see.",
         "payload": 'Q_BROWSE_MORE',
       },
       // {
