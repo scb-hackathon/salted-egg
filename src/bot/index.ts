@@ -16,6 +16,8 @@ import {wtf} from 'utils/logs'
 import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuantityReceived'
 
 import {Message} from 'messenger/send'
+import {retrievePaymentMethod} from 'bot-actions/retrievePaymentMethod'
+import {payByQRCode} from 'bot-actions/payByQRCode'
 
 const {BASE_URL} = process.env
 
@@ -57,15 +59,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
     let amount = match(/\/qr (\d+)/, text)
     if (!amount) amount = "100"
 
-    return {
-      attachment: {
-        type: 'image',
-        payload: {
-          'url': BASE_URL + '/qr/0812390813/' + amount + '?fbid=' + sender,
-          'is_reusable': true,
-        },
-      },
-    }
+    return payByQRCode(amount, sender)
   }
 
   if (text.includes('/reset')) {
@@ -108,22 +102,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   }
 
   if (text.includes('/paymentmethod')) {
-    return {
-      text: 'ต้องการชำระเงินผ่านช่องทางไหนคะ? 💵',
-      quick_replies: [{
-        content_type: 'text',
-        title: 'แอพ SCB 📱',
-        payload: 'PAY_BY_SCB_APP'
-      }, {
-        content_type: 'text',
-        title: 'QR Code 📷',
-        payload: 'PAY_BY_QR_CODE'
-      }, {
-        content_type: 'text',
-        title: 'ให้เพื่อนจ่าย 👫',
-        payload: 'PAY_BY_SCB_BEST'
-      }]
-    }
+    return retrievePaymentMethod()
   }
 
   if (text.includes('/hqr')) {

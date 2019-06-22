@@ -5,6 +5,11 @@ import {buildContext} from 'bot/build-context'
 import {performOnboarding} from 'bot/onboarding'
 import {getProductsCarousel} from 'products/getProductsCarousel'
 import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuantityReceived'
+import {retrieveCartInfo} from 'bot-actions/payment'
+import {requestToPay} from 'bot-actions/requestToPay'
+import {payByQRCode} from 'bot-actions/payByQRCode'
+
+const {BASE_URL, BILLER_ID} = process.env
 
 interface Postback {
   title: string,
@@ -80,6 +85,29 @@ export async function handlePostback(senderID: string, postback: Postback) {
     handleQuantityReceived(ctx, 1).then()
 
     return
+  }
+
+  if (payload.startsWith('PAY_BY_')) {
+    const cartInfo = retrieveCartInfo(senderID)
+    if (!cartInfo) {
+      return `คุณยังไม่ได้เลือกซื้ออะไรเลย ลองซื้ออะไรดูก่อนมั้ย 🍭`
+    }
+
+    const {totalPrice} = cartInfo
+
+    if (payload === 'PAY_BY_SCB_APP') {
+      return requestToPay(totalPrice, senderID)
+    }
+
+    if (payload === 'PAY_BY_QR_CODE') {
+      return payByQRCode(String(totalPrice), senderID)
+    }
+
+    if (payload === 'PAY_BY_SCB_BEST') {
+      const url = `${BASE_URL}/pay/${BILLER_ID}/${totalPrice}`
+
+      return `ส่งลิงค์นี้ให้เพื่อนเพื่อจ่ายเงินได้เลยค่ะ: ${url} 🌍`
+    }
   }
 
   if (payload === 'Q_PAY_NOW') {
