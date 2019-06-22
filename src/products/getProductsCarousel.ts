@@ -1,11 +1,13 @@
+import {randomImage} from 'utils/randomImage'
+
 const {BASE_URL} = process.env
 
-function Card(_: any, index: number) {
+function Card() {
   const url = `${BASE_URL}/product_list`
 
   return {
     'title': "Lung Too's Store",
-    'image_url': `https://picsum.photos/1200/700?cb=${index}`,
+    'image_url': randomImage(1200, 700),
     'subtitle': 'We have the right tank for everyone.',
     'default_action': {
       'type': 'web_url',

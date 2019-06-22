@@ -82,7 +82,7 @@ export const ProductListHTML = `
           grid.innerHTML += \`
             <div class="grid-child">
               <div>
-                <img src="https://picsum.photos/200?cb=\${i}" />
+                <img src="\${randomImage(200, 200)}" />
               </div>
               <div class="subtitle">
                  Grandad shirt Regular Fit

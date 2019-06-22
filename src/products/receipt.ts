@@ -1,17 +1,18 @@
 import {Cart} from 'utils/db'
+import {randomImage} from 'utils/randomImage'
 
 export function buildReceipt(items: Cart[]) {
   // let image = 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F7821b17e-28f5-11e4-8b81-00144feabdc0?fit=scale-down&source=next&width=700'
 
   const totalPrice = items.map(x => x.price).reduce((x, y) => x + y, 0)
 
-  const carts = items.map((x, i) => ({
+  const carts = items.map(x => ({
     title: x.name,
     subtitle: x.name,
     quantity: 1,
     price: x.price,
     currency: 'THB',
-    image_url: `https://picsum.photos/200?prayuth=${i}`
+    image_url: randomImage(200, 200)
   }))
 
   return {

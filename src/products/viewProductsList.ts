@@ -1,3 +1,5 @@
+import {randomImage} from 'utils/randomImage'
+
 export async function viewProductsList() {
   return {
     'attachment': {
@@ -7,7 +9,7 @@ export async function viewProductsList() {
         'elements': [
           {
             'title': `ดูรายชื่อสินค้า`,
-            'image_url': 'https://picsum.photos/1200/700',
+            'image_url': randomImage(1200, 700),
             'subtitle': `ดูรายชื่อสินค้า`,
             'default_action': {
               'type': 'web_url',
