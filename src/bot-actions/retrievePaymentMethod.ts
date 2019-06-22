@@ -36,10 +36,10 @@ export async function retrievePaymentMethod(ctx: BotContext, text?: string): Pro
 
       await reply(`ส่งลิงค์นี้ให้เพื่อนเพื่อจ่ายเงินได้เลยค่ะ: ${url} 🌍`)
     } else {
-      return ''
+      return retrievePaymentMethod(ctx)
     }
 
-    exit()
+    setState({awaitingPayment: true})
 
     return {
       text: 'ถ้าติดปัญหาอะไรสามารถสอบถามได้เลยนะคะ 🙏',

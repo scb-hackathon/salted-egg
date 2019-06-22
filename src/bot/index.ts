@@ -29,6 +29,7 @@ export type BotState = Partial<{
   asking: Question | false
   currentItem: Product
   currentQuantity: number
+  awaitingPayment: boolean
 }>
 
 export type BotStateMap = {
