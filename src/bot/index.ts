@@ -2,6 +2,7 @@ import {QueryResult} from 'dialogflow'
 
 import {Cart, db} from 'utils/db'
 
+import {resetCart} from 'bot-actions/resetCart'
 import {requestToPay} from 'bot-actions/requestToPay'
 import {runDialogflow} from 'bot-actions/runDialogflow'
 import {viewProductsList} from 'products/viewProductsList'
@@ -10,7 +11,6 @@ import {handleDialogflow} from 'bot-handlers/handleDialogflow'
 
 import {buildReceipt} from 'products/receipt'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {resetCart} from 'bot/bot-actions/reset-cart'
 
 interface ChatMessage {
   text: string

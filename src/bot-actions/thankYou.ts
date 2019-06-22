@@ -1,7 +1,6 @@
-import {send} from 'messenger/send'
+import {createReply} from 'bot/create-reply'
 
 import {resetCart} from './resetCart'
-import {createReply} from 'bot/create-reply'
 
 export async function thankYou(sender: string) {
   const prayuthThankYou = 'https://s1.reutersmedia.net/resources/r/?m=02&d=20150915&t=2&i=1079446612&r=LYNXNPEB8E05A&w=1280'
@@ -9,7 +8,7 @@ export async function thankYou(sender: string) {
 
   resetCart(sender)
 
-  await reply(`ได้รับเงินแล้วค่ะ ขอบคุณมากนะคะ 💖`)
+  await reply('ได้รับเงินแล้วค่ะ ขอบคุณมากนะคะ 💖')
 
   await reply({
     'attachment': {
