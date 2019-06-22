@@ -42,7 +42,7 @@ export async function executePostbackAction(action: PostbackAction, ctx: BotCont
     return
   }
 
-  wtf('')
+  wtf(`Unimplemented Postback Action: ${type}`, action)
 
   await reply('รู้ไหมว่าเธอน่ารักตอนเมา โอ้ธารารัตน์เบาเบา 🎤')
 }
