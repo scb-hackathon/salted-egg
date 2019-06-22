@@ -9,6 +9,7 @@ import {retrieveCartInfo} from 'bot-actions/payment'
 import {requestToPay} from 'bot-actions/requestToPay'
 import {payByQRCode} from 'bot-actions/payByQRCode'
 import {handleCartEmpty} from 'bot-actions/handleCartEmpty'
+import {retrievePaymentMethod} from 'bot-actions/retrievePaymentMethod'
 
 const {BASE_URL, BILLER_ID} = process.env
 
@@ -86,6 +87,10 @@ export async function handlePostback(senderID: string, postback: Postback) {
     handleQuantityReceived(ctx, 1).then()
 
     return
+  }
+
+  if (payload === 'CHANGE_PAYMENT_METHOD') {
+    return retrievePaymentMethod(ctx)
   }
 
   if (payload.startsWith('PAY_BY_')) {

@@ -3,6 +3,7 @@ import {retrieveCartInfo} from 'bot-actions/payment'
 import {handleCartEmpty} from 'bot-actions/handleCartEmpty'
 import {payByQRCode} from 'bot-actions/payByQRCode'
 import {requestToPay} from 'bot-actions/requestToPay'
+import {debug} from 'utils/logs'
 
 const {BASE_URL, BILLER_ID} = process.env
 
@@ -23,17 +24,34 @@ export async function retrievePaymentMethod(ctx: BotContext, text?: string): Pro
 
   if (text) {
     if (/แอพ|SCB Easy|SCB App/i.test(text)) {
-      return requestToPay(totalPrice, sender)
-    }
+      const res = await requestToPay(totalPrice, sender)
+      await reply(res)
+    } else if (/QR|คิวอา|Code/i.test(text)) {
+      const res = await payByQRCode(String(totalPrice), sender)
+      await reply(res)
+    } else if (/เพื่อน|friend|best|web|link/i.test(text)) {
+      debug(`> Biller ID = ${BILLER_ID}`)
 
-    if (/QR|คิวอา|Code/i.test(text)) {
-      return payByQRCode(String(totalPrice), sender)
-    }
-
-    if (/เพื่อน|friend|best|web|link/i.test(text)) {
       const url = `${BASE_URL}/pay/${BILLER_ID}/${totalPrice}`
 
-      return `ส่งลิงค์นี้ให้เพื่อนเพื่อจ่ายเงินได้เลยค่ะ: ${url} 🌍`
+      await reply(`ส่งลิงค์นี้ให้เพื่อนเพื่อจ่ายเงินได้เลยค่ะ: ${url} 🌍`)
+    } else {
+      return ''
+    }
+
+    exit()
+
+    return {
+      text: 'ถ้าติดปัญหาอะไรสามารถสอบถามได้เลยนะคะ 🙏',
+      quick_replies: [{
+        content_type: 'text',
+        title: 'เปลี่ยนวิธีจ่าย 💵',
+        payload: 'CHANGE_PAYMENT_METHOD'
+      }, {
+        content_type: 'text',
+        title: 'ยกเลิกสินค้า ❌',
+        payload: 'CANCEL_ORDER'
+      }]
     }
   }
 
