@@ -14,11 +14,11 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
         "title": "ขอดูก่อนนะ 📙",
         "payload": 'Q_BROWSE_MORE',
       },
-      {
-        "content_type": "text",
-        "title": "ไม่ล่ะ ซื้อเลยละกัน 👌🏻",
-        "payload": "Q_PAY_NOW",
-      }
+      // {
+      //   "content_type": "text",
+      //   "title": "ไม่ล่ะ ซื้อเลยละกัน 👌🏻",
+      //   "payload": "Q_PAY_NOW",
+      // }
     ]
   })
 }

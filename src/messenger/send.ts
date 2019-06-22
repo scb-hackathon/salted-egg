@@ -4,16 +4,24 @@ import {debug, success} from 'utils/logs'
 
 const {PAGE_ACCESS_TOKEN} = process.env
 
-export async function send(sender: string, response: any) {
+interface Message {
+  text?: string
+}
+
+export async function send(sender: string, message: Message) {
+  if (!message) return
+  const {text} = message
+
   const payload = {
     recipient: {
       id: sender,
     },
-    message: response,
+    message,
+    messaging_type: "RESPONSE"
   }
 
-  if (response.text) {
-    console.log(`[🦄] Replying: ${response.text}`)
+  if (text) {
+    console.log(`[🦄] Replying: ${text}`)
   } else {
     console.log(`[🦄] Replying non-text message to ${sender}`)
   }
