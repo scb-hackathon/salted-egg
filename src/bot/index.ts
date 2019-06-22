@@ -10,6 +10,7 @@ import {handleDialogflow} from 'bot-handlers/handleDialogflow'
 
 import {buildReceipt} from 'products/receipt'
 import {getProductsCarousel} from 'products/getProductsCarousel'
+import {resetCart} from 'bot/bot-actions/reset-cart'
 
 interface ChatMessage {
   text: string
@@ -39,15 +40,6 @@ function getItemName(text: string) {
   if (!item) item = '🍕'
 
   return item.trim().replace(/ราคา/g, '')
-}
-
-export function resetCart(sender: string) {
-  const list: Cart[] = db.get('cart').value()
-  const newList = list.filter(x => x.buyer !== sender)
-
-  console.log('>> Resetting Cart for User =', sender)
-
-  db.set('cart', newList).write()
 }
 
 // TODO: Replace with persistent DB
