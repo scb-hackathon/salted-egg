@@ -52,12 +52,13 @@ export function resetCart(sender: string) {
 
 // TODO: Replace with persistent DB
 const PriceMap: {[item: string]: number} = {}
-
+const CurrentItemMap: {[customer: string]: string} = {}
 
 const buyItemRegex = /ซื้อ\s?([ก-๙]+|\w+\s?)/
 
 function getBuyItemName(text: string) {
   const item = match(buyItemRegex, text)
+  if (!item) return null
 
   return item.trim()
 }
@@ -113,6 +114,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     const price = Math.floor(Math.random() * 1000)
 
     PriceMap[name] = price
+    CurrentItemMap[ctx.sender] = name
 
     console.log(`>> Customer asked for price of ${name} (${price} THB) 😃`)
 
@@ -120,7 +122,15 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
   }
 
   if (/ซื้อ/.test(text)) {
-    const name = getBuyItemName(text)
+    let name = getBuyItemName(text)
+
+    if (!name) {
+      const currentItem = CurrentItemMap[ctx.sender]
+      if (currentItem) name = currentItem
+    }
+
+    if (!name) return `สินค้าหมดแล้วค่ะ ขออภัยด้วยนะคะ`
+
     let price = PriceMap[name]
     if (!price) price = Math.floor(Math.random() * 1000)
 
@@ -130,7 +140,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
     db.get('cart').push(item).write()
 
-    return `เพิ่ม ${name} ราคา ${price} บาท ลงตะกร้าแล้วค่ะ 💖`
+    return `เพิ่ม${name} ลงตะกร้าแล้วค่ะ ราคา ${price} บาทแล้วนะคะ 💖`
   }
 
   if (text.includes('จ่าย')) {
