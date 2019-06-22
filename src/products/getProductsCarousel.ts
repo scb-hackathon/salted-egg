@@ -35,7 +35,7 @@ function Card() {
   }
 }
 
-export async function getProductsCarousel() {
+export function getProductsCarousel() {
   const elements = Array.from({length: 5}).map(Card)
 
   return {

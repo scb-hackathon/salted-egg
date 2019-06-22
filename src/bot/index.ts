@@ -20,7 +20,7 @@ import {Message} from 'messenger/send'
 
 export type BotResponse = string | Message | false
 
-export type Question = 'QUANTITY'
+export type Question = 'QUANTITY' | 'PAY_NOW_OR_NOT'
 
 export interface BotState {
   asking: Question | false
@@ -50,7 +50,6 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   const rtp = (amount: number) => requestToPay(amount, sender)
 
-  // TODO(Phoom): Implement + Add Quick Reply
   if (state.asking === 'QUANTITY') {
     const quantity = parseInt(text.trim(), 10)
 
@@ -66,12 +65,32 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
     return `ต้องการซื้อกี่ชิ้นดีคะ?`
   }
 
-  if (text.includes('/hqr')) {
-    return handleQuantityReceived(ctx, 1000).then()
+  if (state.asking === 'PAY_NOW_OR_NOT') {
+    if (/ใช่|เลย/.test(text)) {
+      setState({asking: false})
+
+      await reply('โอเคค่ะ จ่ายเลยละกันเนาะ 🦄')
+      handlePayment(ctx).then()
+
+      return false
+    }
+
+    if (/ไม่|เดี๋ยวค่อย/.test(text)) {
+      setState({asking: false})
+
+      await reply('โอเคค่ะ ลองดูสินค้าเพิ่มเติมก่อนนะคะ 😇')
+
+      const carousel = getProductsCarousel()
+      await reply(carousel)
+
+      return false
+    }
+
+    return 'ต้องการจะซื้อเลยไหมคะ?'
   }
 
-  if (text.includes('/list')) {
-    return viewProductsList()
+  if (text.includes('/hqr')) {
+    return handleQuantityReceived(ctx, 1000).then()
   }
 
   if (text.includes('/reset')) {

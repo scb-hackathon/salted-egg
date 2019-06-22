@@ -1,7 +1,7 @@
 import {BotContext} from 'bot'
 
 export async function handleQuantityReceived(ctx: BotContext, quantity: number) {
-  const {reply} = ctx
+  const {reply, setState} = ctx
   console.info('Item Quantity =', quantity)
 
   await reply(`โอเคค่ะ รับเป็น ${quantity} ชิ้นนะคะ`)
@@ -21,4 +21,6 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
       }
     ]
   })
+
+  setState({asking: 'PAY_NOW_OR_NOT'})
 }
