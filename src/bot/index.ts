@@ -52,7 +52,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   if (state.asking === 'QUANTITY') {
     if (text.includes('ชิ้นเดียว')) {
-      handleQuantityReceived(ctx, quantity).then()
+      handleQuantityReceived(ctx, 1).then()
 
       return false
     }
