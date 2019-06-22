@@ -4,7 +4,7 @@ import {debug, success} from 'utils/logs'
 
 const {PAGE_ACCESS_TOKEN} = process.env
 
-interface QuickReply {
+export interface QuickReply {
   content_type: 'text' | 'user_phone_number' | 'user_email'
   title?: string
   payload?: string
@@ -33,6 +33,8 @@ export async function send(sender: string, message: Message) {
     const replies = quick_replies.map(x => x.title).join(', ')
 
     console.log(`[💬] Quick Replies:`, replies)
+
+    debug(`>>> QUICK REPLY PAYLOAD: ${JSON.stringify(payload, null, 2)}`)
   }
 
   if (text) {
