@@ -1,13 +1,15 @@
 import {QueryResult} from 'dialogflow'
 
-import {requestToPay} from 'bot-actions/requestToPay'
-import {handleDialogflow} from 'bot-handlers/handleDialogflow'
-import {viewProductsList} from 'products/viewProductsList'
-import {runDialogflow} from 'bot-actions/runDialogflow'
 import {Cart, db} from 'utils/db'
+
+import {requestToPay} from 'bot-actions/requestToPay'
+import {runDialogflow} from 'bot-actions/runDialogflow'
+import {viewProductsList} from 'products/viewProductsList'
 import {setPersistentMenu} from 'bot-actions/setPersistentMenu'
-import {getProductsCarousel} from 'products/getProductsCarousel'
+import {handleDialogflow} from 'bot-handlers/handleDialogflow'
+
 import {buildReceipt} from 'products/receipt'
+import {getProductsCarousel} from 'products/getProductsCarousel'
 
 interface ChatMessage {
   text: string

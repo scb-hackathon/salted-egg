@@ -1,8 +1,9 @@
 import {Request, Response} from 'express'
+
 import {match} from 'bot'
-import {PaymentCallbackHTML} from 'deeplink/PaymentCallbackHTML'
-import {db, DeepLink} from 'utils/db'
 import {send} from 'messenger/send'
+import {db, DeepLink} from 'utils/db'
+import {PaymentCallbackHTML} from 'deeplink/PaymentCallbackHTML'
 
 export async function DeepCallbackRoute(req: Request, res: Response) {
   const {query} = req
