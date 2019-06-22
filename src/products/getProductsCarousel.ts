@@ -28,7 +28,7 @@ function Card() {
     'buttons': [
       {
         'type': 'postback',
-        'title': 'ซื้อ',
+        'title': `ซื้อ${item.name}`,
         payload
       },
     ],
