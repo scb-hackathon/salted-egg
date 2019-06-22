@@ -50,6 +50,13 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   const rtp = (amount: number) => requestToPay(amount, sender)
 
+  if (text.includes('/reset')) {
+    resetCart(sender)
+    setState({asking: false})
+
+    return 'Cart is reset! 🔥'
+  }
+
   if (state.asking === 'QUANTITY') {
     if (text.includes('ชิ้นเดียว')) {
       handleQuantityReceived(ctx, 1).then()
@@ -84,12 +91,6 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   if (text.includes('/hqr')) {
     return handleQuantityReceived(ctx, 1000).then()
-  }
-
-  if (text.includes('/reset')) {
-    resetCart(sender)
-
-    return 'Cart is reset! 🔥'
   }
 
   if (text.includes('/set_menu')) {
