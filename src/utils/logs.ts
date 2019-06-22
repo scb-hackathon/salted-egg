@@ -7,3 +7,7 @@ export function debug(name: string, ...args: any[]) {
 export function success(text: string, ...args: any[]) {
   console.info(chalk.green(chalk.bold(text)), ...args)
 }
+
+export function wtf(...args: any[]) {
+  console.error(`[🔥]`, ...args)
+}

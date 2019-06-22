@@ -1,10 +1,7 @@
 import {Bot, BotContext} from 'bot'
 
 import {createReply} from 'bot/create-reply'
-
-export function wtf(...args: any[]) {
-  console.error(`[🔥]`, ...args)
-}
+import {wtf} from 'utils/logs'
 
 export async function handleMessage(senderID: string, message: any) {
   const {text} = message

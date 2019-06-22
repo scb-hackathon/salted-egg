@@ -3,12 +3,22 @@ import {randomImage} from 'utils/randomImage'
 const {BASE_URL} = process.env
 
 function Card() {
+  const item = "ชานมไข่มุก"
   const url = `${BASE_URL}/product_list`
+  const price = Math.floor(Math.random() * 1000)
+
+  const payload = JSON.stringify({
+    type: 'BUY',
+    payload: {
+      item,
+      price,
+    }
+  })
 
   return {
-    'title': "Lung Too's Store",
+    'title': item,
     'image_url': randomImage(1200, 700),
-    'subtitle': 'We have the right tank for everyone.',
+    'subtitle': `ราคา ${price} บาท`,
     'default_action': {
       'type': 'web_url',
       url,
@@ -16,9 +26,9 @@ function Card() {
     },
     'buttons': [
       {
-        'type': 'web_url',
-        url,
-        'title': 'View Website',
+        'type': 'postback',
+        'title': 'ซื้อ',
+        payload
       },
     ],
   }

@@ -1,6 +1,6 @@
 import uuid from 'uuid'
 import {QueryResult, SessionsClient} from 'dialogflow'
-import {wtf} from 'bot-handlers/handleMessage'
+import {wtf} from 'utils/logs'
 
 const PROJECT_ID = 'sellerbot-th1-ucuhdp'
 
