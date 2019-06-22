@@ -86,7 +86,14 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
     wtf(`>> Input is not a number: ${text}`)
 
-    return `ต้องการซื้อกี่ชิ้นดีคะ?`
+    return {
+      text: 'ต้องการซื้อกี่ชิ้นดีคะ? 💬',
+      quick_replies: [{
+        content_type: 'text',
+        title: 'ชิ้นเดียว 🍭',
+        payload: 'BUY_ONLY_ONE'
+      }]
+    }
   }
 
   if (state.asking === 'PAY_NOW_OR_NOT') {
@@ -98,7 +105,21 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
       return payLater(ctx)
     }
 
-    return 'ต้องการจะซื้อเลยไหมคะ?'
+    return {
+      text: 'ต้องการจะซื้อเลยไหมคะ? 💬',
+      quick_replies: [
+        {
+          "content_type": "text",
+          "title": "ขอดูก่อนนะ 📙",
+          "payload": 'Q_BROWSE_MORE',
+        },
+        {
+          "content_type": "text",
+          "title": "ซื้อเลยละกัน 💖",
+          "payload": "Q_PAY_NOW",
+        }
+      ]
+    }
   }
 
   if (text.includes('/paymentmethod')) {
