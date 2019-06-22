@@ -33,7 +33,7 @@ export async function call(service: string, payload: any) {
       params: {access_token: PAGE_ACCESS_TOKEN}
     })
 
-    success('[⚡️] Request is sent!')
+    success('[🦄] Request is sent!')
   } catch (err) {
     if (err.response) {
       const {data} = err.response
