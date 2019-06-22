@@ -4,7 +4,7 @@ import {createReply} from 'bot/create-reply'
 
 export async function thankYouQR(sender: string, txResult: TransactionResult) {
   const {sender: scbSender} = txResult
-  const {name, displayName} = scbSender
+  const {displayName} = scbSender
 
   const prayuthThankYou = 'https://s1.reutersmedia.net/resources/r/?m=02&d=20150915&t=2&i=1079446612&r=LYNXNPEB8E05A&w=1280'
   const reply = createReply(sender)

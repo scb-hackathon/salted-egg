@@ -60,8 +60,8 @@ export async function handlePostback(senderID: string, postback: Postback) {
 
   debug(`>> Handling Postback: ${title} (${payload})`)
 
-  const context = buildContext(senderID)
-  const {reply, setState} = context
+  const ctx = buildContext(senderID)
+  const {reply} = ctx
 
   if (payload === 'DISPLAY_CATALOGUE_CAROUSEL') {
     await reply('เลือกดูสินค้าได้เลยนะคะ 📙')
@@ -74,23 +74,23 @@ export async function handlePostback(senderID: string, postback: Postback) {
   if (payload === 'BUY_ONLY_ONE') {
     debug('>>> BUY ONLY ONE!')
 
-    handleQuantityReceived(context, 1).then()
+    handleQuantityReceived(ctx, 1).then()
 
     return
   }
 
   if (payload === 'Q_PAY_NOW') {
-    return payNow(context)
+    return payNow(ctx)
   }
 
   if (payload === 'Q_BROWSE_MORE') {
-    return payLater(context)
+    return payLater(ctx)
   }
 
   const action = parsePostbackAction(payload)
-  if (action) return executePostbackAction(action, context)
+  if (action) return executePostbackAction(action, ctx)
 
   if (payload === 'FACEBOOK_WELCOME') {
-    return performOnboarding(context)
+    return performOnboarding(ctx)
   }
 }
