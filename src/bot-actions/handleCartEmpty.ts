@@ -1,6 +1,6 @@
 import {BotContext, BotResponse} from 'bot'
 
-export async function handleCartEmpty(ctx: BotContext): BotResponse {
+export async function handleCartEmpty(ctx: BotContext): Promise<BotResponse> {
   await ctx.reply({
     text: 'คุณยังไม่ได้เลือกซื้ออะไรเลย ลองซื้ออะไรดูก่อนมั้ย 🍭',
     quick_replies: [{
