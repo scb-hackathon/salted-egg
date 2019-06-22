@@ -8,6 +8,7 @@ import {handleQuantityReceived, payLater, payNow} from 'bot-actions/handleQuanti
 import {retrieveCartInfo} from 'bot-actions/payment'
 import {requestToPay} from 'bot-actions/requestToPay'
 import {payByQRCode} from 'bot-actions/payByQRCode'
+import {handleCartEmpty} from 'bot-actions/handleCartEmpty'
 
 const {BASE_URL, BILLER_ID} = process.env
 
@@ -89,9 +90,7 @@ export async function handlePostback(senderID: string, postback: Postback) {
 
   if (payload.startsWith('PAY_BY_')) {
     const cartInfo = retrieveCartInfo(senderID)
-    if (!cartInfo) {
-      return `คุณยังไม่ได้เลือกซื้ออะไรเลย ลองซื้ออะไรดูก่อนมั้ย 🍭`
-    }
+    if (!cartInfo) return handleCartEmpty(ctx)
 
     const {totalPrice} = cartInfo
 

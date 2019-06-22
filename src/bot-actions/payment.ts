@@ -2,6 +2,7 @@ import {Cart, db} from 'utils/db'
 import {buildReceipt} from 'products/receipt'
 import {BotContext} from 'bot'
 import {retrievePaymentMethod} from 'bot-actions/retrievePaymentMethod'
+import {handleCartEmpty} from 'bot-actions/handleCartEmpty'
 
 export function retrieveCartInfo(sender: string) {
   const products: Cart[] = db.get('cart').value()
@@ -19,13 +20,13 @@ export async function handlePayment(ctx: BotContext) {
 
   const cartInfo = retrieveCartInfo(sender)
   if (!cartInfo) {
-    return `คุณยังไม่ได้เลือกซื้ออะไรเลย ลองซื้ออะไรดูก่อนมั้ย 🍭`
+    return handleCartEmpty(ctx)
   }
 
   const {cart, count, totalPrice} = cartInfo
 
   if (totalPrice < 1 || count < 1) {
-    return `คุณยังไม่ได้เลือกซื้ออะไรเลย ลองซื้ออะไรดูก่อนมั้ย 🍭`
+    return handleCartEmpty(ctx)
   }
 
   await reply(`ตอนนี้คุณมี ${count} อย่างในตระกร้า รวมกัน ${totalPrice} บาทค่ะ`)
