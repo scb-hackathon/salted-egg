@@ -71,11 +71,11 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   }
 
   if (state.asking === 'PAY_NOW_OR_NOT') {
-    if (/ใช่|เลย/.test(text)) {
+    if (/ใช่|เลย|ซื้อเลย/.test(text)) {
       return payNow(ctx)
     }
 
-    if (/ไม่|เดี๋ยวค่อย/.test(text)) {
+    if (/ไม่|เดี๋ยวค่อย|ดูก่อน/.test(text)) {
       return payLater(ctx)
     }
 
