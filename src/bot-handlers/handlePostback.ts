@@ -45,7 +45,10 @@ export async function executePostbackAction(action: PostbackAction, ctx: BotCont
       }]
     })
 
-    setState({asking: 'QUANTITY'})
+    setState({
+      asking: 'QUANTITY',
+      currentItem: {name, price}
+    })
 
     return
   }

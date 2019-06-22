@@ -1,4 +1,4 @@
-import {Cart, db} from 'utils/db'
+import {Cart, db, Product} from 'utils/db'
 
 import {addToCart} from 'bot-actions/addToCart'
 import {resetCart} from 'bot-actions/resetCart'
@@ -23,9 +23,11 @@ export type BotResponse = string | Message | boolean
 
 export type Question = 'QUANTITY' | 'PAY_NOW_OR_NOT'
 
-export interface BotState {
+export type BotState = Partial<{
   asking: Question | false
-}
+  currentItem: Product
+  currentQuantity: number
+}>
 
 export type BotStateMap = {
   [customer: string]: BotState

@@ -11,6 +11,12 @@ function getBuyItemName(text: string) {
   return item.trim()
 }
 
+export function addItemToCart(name: string, price: number, buyer: string, quantity = 0) {
+  const item: Cart = {name, price, buyer, quantity}
+
+  db.get('cart').push(item).write()
+}
+
 export async function addToCart(ctx: BotContext, text: string) {
   let name = getBuyItemName(text)
 
@@ -30,9 +36,7 @@ export async function addToCart(ctx: BotContext, text: string) {
 
   console.log(`>> Customer added ${name} (${price} THB) to cart! 😎`)
 
-  const item: Cart = {name, price, buyer: ctx.sender}
-
-  db.get('cart').push(item).write()
+  addItemToCart(name, price, ctx.sender, 1)
 
   return `เพิ่ม${name}ลงตะกร้าแล้วค่ะ ราคา ${price} บาทนะคะ 💖`
 }

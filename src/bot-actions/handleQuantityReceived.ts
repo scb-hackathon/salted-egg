@@ -1,6 +1,7 @@
 import {BotContext} from 'bot'
 import {handlePayment} from 'bot-actions/payment'
 import {getProductsCarousel} from 'products/getProductsCarousel'
+import {addItemToCart} from 'bot-actions/addToCart'
 
 export async function handleQuantityReceived(ctx: BotContext, quantity: number) {
   const {reply, setState} = ctx
@@ -26,14 +27,25 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
     ]
   })
 
-  setState({asking: 'PAY_NOW_OR_NOT'})
+  setState({
+    asking: 'PAY_NOW_OR_NOT',
+    currentQuantity: quantity
+  })
 }
 
 export async function payNow(ctx: BotContext) {
-  const {reply, setState} = ctx
+  const {reply, state, setState} = ctx
   setState({asking: false})
 
   await reply('โอเคค่ะ จ่ายเลยละกันเนาะ 🦄')
+
+  const {currentItem, currentQuantity = 1} = state
+
+  if (currentItem) {
+    const {name, price} = currentItem
+
+    addItemToCart(name, price, ctx.sender, currentQuantity)
+  }
 
   return handlePayment(ctx)
 }

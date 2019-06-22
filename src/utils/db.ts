@@ -17,6 +17,7 @@ export interface Product {
 
 export type Cart = {
   buyer: string
+  quantity: number
 } & Product
 
 export interface DeepLink {
