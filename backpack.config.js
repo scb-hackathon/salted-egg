@@ -36,11 +36,11 @@ module.exports = {
       ],
     })
 
-    config.plugins.push(
-      new ForkTSCheckerPlugin({
-        checkSyntacticErrors: true,
-      }),
-    )
+    // config.plugins.push(
+    //   new ForkTSCheckerPlugin({
+    //     checkSyntacticErrors: true,
+    //   }),
+    // )
 
     return config
   },

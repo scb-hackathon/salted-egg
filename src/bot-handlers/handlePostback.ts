@@ -1,9 +1,10 @@
 import {send} from 'messenger/send'
+import {debug} from 'utils/logs'
 
 export async function handlePostback(senderID: string, postback: any) {
   const {payload} = postback
 
-  console.log('>> Handling Postback')
+  debug('>> Handling Postback...')
 
   if (payload === 'yes') {
     return send(senderID, {'text': 'Thanks!'})
