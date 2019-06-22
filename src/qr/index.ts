@@ -6,7 +6,7 @@ import {debug} from 'utils/logs'
 
 const {APP_KEY = '', BILLER_ID} = process.env
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'https://api.partners.scb/partners/sandbox/v1/',
   headers: {
     requestUId: uuid(),

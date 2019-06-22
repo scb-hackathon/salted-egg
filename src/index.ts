@@ -12,6 +12,7 @@ import {RedirectRoute} from 'services/DeepRedirect'
 
 import {ProductListHTML} from 'products/ProductListHTML'
 import {QRRoute} from 'services/QRService'
+import {PaymentConfirmRoute} from 'services/PaymentConfirm'
 
 const {PORT} = process.env
 
@@ -40,6 +41,7 @@ app.get('/product_list', ProductListRoute)
 app.get('/pay/:account/:number', PayRoute)
 app.get('/deep_callback', DeepCallbackRoute)
 app.get('/qr/:account/:number', QRRoute)
+app.post('/payment_confirm', PaymentConfirmRoute)
 
 // Set up an error handler that gives us nicer errors
 app.use(express.errorHandler({
