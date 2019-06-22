@@ -51,10 +51,15 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
   const rtp = (amount: number) => requestToPay(amount, sender)
 
   if (state.asking === 'QUANTITY') {
+    if (text.includes('ชิ้นเดียว')) {
+      handleQuantityReceived(ctx, quantity).then()
+
+      return false
+    }
+
     const quantity = parseInt(text.trim(), 10)
 
     if (quantity) {
-      setState({asking: false})
       handleQuantityReceived(ctx, quantity).then()
 
       return false

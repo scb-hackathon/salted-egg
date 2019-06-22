@@ -72,8 +72,7 @@ export async function handlePostback(senderID: string, postback: Postback) {
   }
 
   if (payload === 'BUY_ONLY_ONE') {
-    console.log('BUY ONLY ONE!')
-    setState({asking: false})
+    debug('>>> BUY ONLY ONE!')
 
     handleQuantityReceived(context, 1).then()
 
