@@ -13,6 +13,7 @@ import {PaymentCallbackHTML} from 'PaymentCallbackHTML'
 import {match} from 'bot/Bot'
 import {db, DeepLink} from 'db'
 import {send} from 'bot/send'
+import {ProductListHTML} from 'ProductListHTML'
 
 const {PORT} = process.env
 
@@ -42,6 +43,12 @@ app.get('/redirect', (req: Request, res: Response) => {
   // res.setHeader('Location', decoded)
   // res.status(302)
   res.send(PaymentRedirectHTML.replace('{{DECODED}}', decoded))
+})
+
+app.get('/product_list', async (req: Request, res: Response) => {
+  const {query} = req
+
+  res.send(ProductListHTML)
 })
 
 app.get('/deep_callback', async (req: Request, res: Response) => {
