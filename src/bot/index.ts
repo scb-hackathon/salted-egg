@@ -59,7 +59,7 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
       attachment: {
         type: 'image',
         payload: {
-          'url': BASE_URL + '/qr/0812390813/' + amount,
+          'url': BASE_URL + '/qr/0812390813/' + amount + '?fbid=' + sender,
           'is_reusable': true,
         },
       },

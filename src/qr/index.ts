@@ -16,7 +16,7 @@ export const api = axios.create({
   }
 })
 
-export async function generateQRCode(amount: number) {
+export async function generateQRCode(amount: number, ref: string) {
   const {accessToken} = await authenticate()
   debug('Access Token =', accessToken)
 
@@ -29,9 +29,9 @@ export async function generateQRCode(amount: number) {
     "ppType": "BILLERID",
     "ppId": BILLER_ID,
     "amount": String(amount),
-    "ref1": "123123",
-    "ref2": "123132132",
-    "ref3": "SCB1234"
+    "ref1": ref,
+    "ref2": ref,
+    "ref3": ref
   }
 
   const endpoint = 'payment/qrcode/create'

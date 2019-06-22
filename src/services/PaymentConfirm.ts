@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import {verifyQRCode} from 'qr/verify'
 import {debug} from 'utils/logs'
 import {thankYou} from 'bot-actions/thankYou'
+import {db, QRCode} from 'utils/db'
 
 // {
 //   payeeProxyId: '719492347382944',
@@ -51,10 +52,21 @@ export async function PaymentConfirmRoute(req: Request, res: Response) {
 
   debug('Verify Result:', verifyResult)
 
-  const {sender, transTime, transDate} = verifyResult
+  const {sender, transTime, transDate, ref1, ref2, ref3} = verifyResult
   const {name, displayName} = sender
 
   console.log(`>> Transaction Confirmed for ${displayName} (${name}) at ${transTime} ${transDate}`)
+  console.log('>> References:', ref1, ref2, ref3)
+
+  const item: QRCode = db.get('qr').find({ref: ref1}).value()
+
+  debug('QRCode >>', item)
+
+  if (item) {
+    const {sender: fbSender} = item
+
+    thankYou(fbSender).then()
+  }
 
   res.send('OK')
 }

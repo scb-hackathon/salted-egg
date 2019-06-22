@@ -25,16 +25,23 @@ export interface DeepLink {
   userRef: string
 }
 
+export interface QRCode {
+  sender: string
+  ref: string
+}
+
 export interface Database {
   cart: Cart[],
   stock: Product[],
   deepLink: DeepLink[]
+  qr: QRCode[]
 }
 
 const dbDefaults: Database = {
   cart: [],
   stock: [],
-  deepLink: []
+  deepLink: [],
+  qr: []
 }
 
 db.defaults(dbDefaults).write()
