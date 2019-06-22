@@ -41,6 +41,15 @@ function getItemName(text: string) {
   return item.replace(priceRegex, '')
 }
 
+export function resetCart(sender: string) {
+  const list: Cart[] = db.get('cart').value()
+  const newList = list.filter(x => x.buyer !== sender)
+
+  console.log('>> Resetting Cart for User =', sender)
+
+  db.set('cart', newList).write()
+}
+
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
 
@@ -48,6 +57,12 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
   if (text.includes('/products_list')) {
     return viewProductsList()
+  }
+
+  if (text.includes('/reset')) {
+    resetCart(ctx.sender)
+
+    return 'Cart is reset! 🔥'
   }
 
   if (text.includes('/set_menu')) {
