@@ -42,5 +42,5 @@ export async function handlePayment(ctx: BotContext) {
 
   console.log(`>> Customer is ready to buy ${count} items for ${totalPrice} THB! 🎉`)
 
-  return retrievePaymentMethod()
+  return retrievePaymentMethod(ctx)
 }

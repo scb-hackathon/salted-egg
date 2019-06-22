@@ -23,7 +23,7 @@ const {BASE_URL} = process.env
 
 export type BotResponse = string | Message | boolean
 
-export type Question = 'QUANTITY' | 'PAY_NOW_OR_NOT'
+export type Question = 'QUANTITY' | 'PAY_NOW_OR_NOT' | 'PAYMENT_METHOD'
 
 export type BotState = Partial<{
   asking: Question | false
@@ -127,8 +127,12 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
     }
   }
 
+  if (state.asking === 'PAYMENT_METHOD') {
+    return retrievePaymentMethod(ctx)
+  }
+
   if (text.includes('/paymentmethod')) {
-    return retrievePaymentMethod()
+    return retrievePaymentMethod(ctx)
   }
 
   if (text.includes('/hqr')) {
