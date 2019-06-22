@@ -8,6 +8,7 @@ import {FeathersError} from '@feathersjs/errors'
 import {PayRoute} from 'services/PayService'
 import {DeepCallbackRoute} from 'services/DeepCallback'
 import {RedirectRoute} from 'services/DeepRedirect'
+import {ProductListHTML} from 'products/ProductListHTML'
 
 const {PORT} = process.env
 
