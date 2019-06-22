@@ -30,7 +30,7 @@ export function match(regex: RegExp, text: string) {
   return m[1]
 }
 
-const howMuchItemRegex = /([ก-๙]+)กี่บาท/
+const howMuchItemRegex = /([ก-๙]+|\w+\s?)กี่บาท/
 
 function getItemName(text: string) {
   const item = match(howMuchItemRegex, text)
@@ -38,7 +38,7 @@ function getItemName(text: string) {
 
   const priceRegex = /ราคา/g
 
-  return item.replace(priceRegex, '')
+  return item.trim().replace(priceRegex, '')
 }
 
 export function resetCart(sender: string) {
@@ -113,6 +113,10 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
     const list = products.filter(p => p.buyer === ctx.sender)
     const count = list.length
     const totalPrice = list.map(x => x.price).reduce((x, y) => x + y, 0)
+
+    if (totalPrice < 1 || count < 1) {
+      return `คุณยังไม่ได้เลือกซื้ออะไรเลย ลองซื้ออะไรดูก่อนมั้ย 🍭`
+    }
 
     // const {name, price} = products
     // console.log(`>> Items in cart: ${name} (${price} THB)`)
