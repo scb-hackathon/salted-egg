@@ -4,6 +4,7 @@ import {addToCart} from 'bot-actions/addToCart'
 import {resetCart} from 'bot-actions/resetCart'
 import {handlePayment} from 'bot-actions/payment'
 import {requestToPay} from 'bot-actions/requestToPay'
+import {getQuotation} from 'bot-actions/getQuotation'
 import {runDialogflow} from 'bot-actions/runDialogflow'
 import {viewProductsList} from 'products/viewProductsList'
 import {setPersistentMenu} from 'bot-actions/setPersistentMenu'
@@ -12,7 +13,6 @@ import {handleDialogflow} from 'bot-handlers/handleDialogflow'
 
 import {buildReceipt} from 'products/receipt'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {getQuotation} from 'bot-actions/getQuotation'
 
 interface ChatMessage {
   text: string

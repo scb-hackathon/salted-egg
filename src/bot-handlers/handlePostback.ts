@@ -1,9 +1,9 @@
 import {BotContext} from 'bot'
-import {debug, wtf} from 'utils/logs'
-import {performOnboarding} from 'bot/onboarding'
 import {Product} from 'utils/db'
+import {debug, wtf} from 'utils/logs'
+import {buildContext} from 'bot/build-context'
+import {performOnboarding} from 'bot/onboarding'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {initContext} from 'bot/init-context'
 
 interface Postback {
   title: string,
@@ -52,7 +52,7 @@ export async function handlePostback(senderID: string, postback: Postback) {
 
   debug(`>> Handling Postback: ${title} (${payload})`)
 
-  const context = initContext(senderID)
+  const context = buildContext(senderID)
   const {reply} = context
 
   if (payload === 'DISPLAY_CATALOGUE_CAROUSEL') {

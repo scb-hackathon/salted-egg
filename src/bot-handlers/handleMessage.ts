@@ -1,7 +1,6 @@
 import {Bot} from 'bot'
-
 import {debug, wtf} from 'utils/logs'
-import {initContext} from 'bot/init-context'
+import {buildContext} from 'bot/build-context'
 
 export async function handleMessage(senderID: string, message: any) {
   const {text} = message
@@ -9,7 +8,7 @@ export async function handleMessage(senderID: string, message: any) {
 
   console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
-  const context = initContext(senderID)
+  const context = buildContext(senderID)
   const {reply} = context
 
   try {
