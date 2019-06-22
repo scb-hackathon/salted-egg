@@ -34,7 +34,7 @@ export async function handlePayment(ctx: BotContext) {
   for (let index in cart) {
     const product = cart[index]
 
-    await reply(`${index}) ${product.name} - ราคา ${product.price} บาท`)
+    await reply(`${index + 1}) ${product.name} - ราคา ${product.price} บาท`)
   }
 
   const receipt = buildReceipt(cart)
