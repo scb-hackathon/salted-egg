@@ -98,16 +98,16 @@ export async function Bot(message: Message, ctx: BotContext): Promise<BotRespons
 
   if (state.asking === 'PAY_NOW_OR_NOT') {
     // Handle case where user adds custom stuff :P
-    if (/ซื้อ/.test(text)) {
-      return addToCart(ctx, text)
-    }
-
     if (/ใช่|เลย|ซื้อเลย|จ่าย/.test(text)) {
       return payNow(ctx)
     }
 
     if (/ไม่|เดี๋ยวค่อย|ดูก่อน/.test(text)) {
       return payLater(ctx)
+    }
+
+    if (/ซื้อ|เอา\s?([ก-๙]+|\w+\s?)/.test(text)) {
+      return addToCart(ctx, text)
     }
 
     return {
