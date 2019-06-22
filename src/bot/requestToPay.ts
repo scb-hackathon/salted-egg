@@ -1,7 +1,7 @@
-import {success} from 'bot/send'
-import {debug} from 'WebhookService'
+
 import {getDeeplink} from 'getDeeplink'
 import {db, DeepLink} from 'db'
+import {debug, success} from 'logs'
 
 const {BASE_URL} = process.env
 
@@ -25,7 +25,6 @@ export async function requestToPay(amount: number, sender: string) {
 
   db.get('deepLink').push(deepLinkRecord).write()
 
-  // const url = 'https://howlonguntilprayuthleaves.com'
   debug('Redirect URL =', url)
 
   let image = 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.prod.s3.amazonaws.com%2F7821b17e-28f5-11e4-8b81-00144feabdc0?fit=scale-down&source=next&width=700'

@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import errors from '@feathersjs/errors'
 import {validateChallenge} from 'bot/validateChallenge'
 import {handleMessage} from 'bot/handleMessage'
@@ -10,10 +9,6 @@ export type ServiceQuery = {
 
 export interface ServiceOption {
   query: ServiceQuery
-}
-
-export function debug(name: string, ...args: any[]) {
-  console.debug(chalk.grey(name), ...args)
 }
 
 export class WebhookService {

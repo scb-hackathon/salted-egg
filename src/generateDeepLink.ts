@@ -1,6 +1,5 @@
 import {getDeeplink} from 'getDeeplink'
-import {success} from 'bot/send'
-import {debug} from 'WebhookService'
+import {debug, success} from 'logs'
 
 const {BASE_URL} = process.env
 

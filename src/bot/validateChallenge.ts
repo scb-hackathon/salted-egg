@@ -1,6 +1,6 @@
-const {VERIFY_TOKEN} = process.env
+import {ServiceQuery} from 'services/WebhookService'
 
-import {ServiceQuery} from 'WebhookService'
+const {VERIFY_TOKEN} = process.env
 
 export function validateChallenge(query: ServiceQuery) {
   const mode = query['hub.mode']
