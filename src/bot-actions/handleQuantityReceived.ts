@@ -35,9 +35,7 @@ export async function payNow(ctx: BotContext) {
 
   await reply('โอเคค่ะ จ่ายเลยละกันเนาะ 🦄')
 
-  handlePayment(ctx).then()
-
-  return false
+  return handlePayment(ctx)
 }
 
 export async function payLater(ctx: BotContext) {
