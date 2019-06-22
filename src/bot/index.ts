@@ -2,16 +2,19 @@ import {QueryResult} from 'dialogflow'
 
 import {Cart, db} from 'utils/db'
 
+import {addToCart} from 'bot-actions/addToCart'
 import {resetCart} from 'bot-actions/resetCart'
+import {handlePayment} from 'bot-actions/payment'
 import {requestToPay} from 'bot-actions/requestToPay'
 import {runDialogflow} from 'bot-actions/runDialogflow'
 import {viewProductsList} from 'products/viewProductsList'
 import {setPersistentMenu} from 'bot-actions/setPersistentMenu'
+
 import {handleDialogflow} from 'bot-handlers/handleDialogflow'
 
 import {buildReceipt} from 'products/receipt'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {handlePayment} from 'bot-actions/handlePayment'
+import {getQuotation} from 'bot-actions/getQuotation'
 
 interface ChatMessage {
   text: string
@@ -30,30 +33,6 @@ export function match(regex: RegExp, text: string) {
   if (!m) return ''
 
   return m[1]
-}
-
-const howMuchItemRegex = /([ก-๙]+|\w+\s?)กี่บาท/
-const howMuchPriceRegex = /([ก-๙]+|\w+\s?)ราคา/
-
-function getItemName(text: string) {
-  let item = match(howMuchItemRegex, text)
-  if (!item) item = match(howMuchPriceRegex, text)
-  if (!item) item = '🍕'
-
-  return item.trim().replace(/ราคา/g, '')
-}
-
-// TODO: Replace with persistent DB
-const PriceMap: {[item: string]: number} = {}
-const CurrentItemMap: {[customer: string]: string} = {}
-
-const buyItemRegex = /ซื้อ\s?([ก-๙]+|\w+\s?)/
-
-function getBuyItemName(text: string) {
-  const item = match(buyItemRegex, text)
-  if (!item) return null
-
-  return item.trim()
 }
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
@@ -103,37 +82,11 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
   }
 
   if (/กี่บาท|ราคา/.test(text)) {
-    const name = getItemName(text)
-    const price = Math.floor(Math.random() * 1000)
-
-    PriceMap[name] = price
-    CurrentItemMap[ctx.sender] = name
-
-    console.log(`>> Customer asked for price of ${name} (${price} THB) 😃`)
-
-    return `${name}ราคา ${price} บาทค่ะ 🦄`
+    return getQuotation(ctx, text)
   }
 
   if (/ซื้อ/.test(text)) {
-    let name = getBuyItemName(text)
-
-    if (!name) {
-      const currentItem = CurrentItemMap[ctx.sender]
-      if (currentItem) name = currentItem
-    }
-
-    if (!name) return `สินค้าหมดแล้วค่ะ ขออภัยด้วยนะคะ`
-
-    let price = PriceMap[name.trim()]
-    if (!price) price = Math.floor(Math.random() * 1000)
-
-    console.log(`>> Customer added ${name} (${price} THB) to cart! 😎`)
-
-    const item: Cart = {name, price, buyer: ctx.sender}
-
-    db.get('cart').push(item).write()
-
-    return `เพิ่ม${name}ลงตะกร้าแล้วค่ะ ราคา ${price} บาทแล้วนะคะ 💖`
+    return addToCart(ctx, text)
   }
 
   if (text.includes('จ่าย')) {

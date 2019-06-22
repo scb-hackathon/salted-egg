@@ -7,6 +7,9 @@ export const adapter = new FileSync(DB_FILE)
 
 export const db = low(adapter)
 
+export const PriceMap: {[item: string]: number} = {}
+export const CurrentItemMap: {[customer: string]: string} = {}
+
 export interface Product {
   name: string,
   price: number,
