@@ -1,5 +1,6 @@
 import {BotContext, match} from 'bot'
 import {Cart, CurrentItemMap, db, PriceMap} from 'utils/db'
+import {wtf} from 'utils/logs'
 
 const buyItemRegex = /ซื้อ\s?([ก-๙]+|\w+\s?)/
 
@@ -18,7 +19,11 @@ export async function addToCart(ctx: BotContext, text: string) {
     if (currentItem) name = currentItem
   }
 
-  if (!name) return `สินค้าหมดแล้วค่ะ ขออภัยด้วยนะคะ`
+  if (!name) {
+    wtf(`Cannot detect the item name. Displaying item sold-out instead.`)
+
+    return `สินค้าหมดแล้วค่ะ ขออภัยด้วยนะคะ`
+  }
 
   let price = PriceMap[name.trim()]
   if (!price) price = Math.floor(Math.random() * 1000)
