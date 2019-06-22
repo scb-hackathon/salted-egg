@@ -5,7 +5,7 @@ import {send} from 'messenger/send'
 import {db, DeepLink} from 'utils/db'
 import {PaymentCallbackHTML} from 'deeplink/PaymentCallbackHTML'
 
-export async function thankYou() {
+export async function thankYou(sender: string) {
   const prayuthThankYou = 'https://s1.reutersmedia.net/resources/r/?m=02&d=20150915&t=2&i=1079446612&r=LYNXNPEB8E05A&w=1280'
 
   send(sender, {
@@ -23,6 +23,8 @@ export async function thankYou() {
       },
     },
   })
+
+  resetCart(sender)
 }
 
 export async function DeepCallbackRoute(req: Request, res: Response) {
@@ -35,8 +37,7 @@ export async function DeepCallbackRoute(req: Request, res: Response) {
   const htmlResponse = PaymentCallbackHTML
     .replace('{{STATUS}}', status)
 
-  thankYou().then()
-  resetCart(sender)
+  thankYou(sender).then()
 
   res.send(htmlResponse)
 }
