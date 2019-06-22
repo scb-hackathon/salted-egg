@@ -16,7 +16,7 @@ export async function handleQuantityReceived(ctx: BotContext, quantity: number) 
       },
       {
         "content_type": "text",
-        "title": "ไม่ล่ะ ซื้อเลยละกัน 👌🏻",
+        "title": "ไม่ล่ะ ซื้อเลยละกัน 😎",
         "payload": "Q_PAY_NOW",
       }
     ]
