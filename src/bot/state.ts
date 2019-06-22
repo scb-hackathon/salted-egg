@@ -1,15 +1,13 @@
-import {BotState} from 'bot'
+import {BotState, BotStateMap} from 'bot'
 import {debug} from 'utils/logs'
 
-export const BotStateMap: BotState = {
-  asking: false
-}
+export const botStateMap: BotStateMap = {}
 
 export const makeSetState = (senderID: string) => (state: BotState) => {
-  const prevState = BotStateMap[senderID]
-  const nextState = {...prevState, ...state}
+  const prevState: BotState = botStateMap[senderID]
+  const nextState: BotState = {...prevState, ...state}
 
   debug(`>> Bot State: ${senderID} = ${JSON.stringify(nextState)}`)
 
-  BotStateMap[senderID] = nextState
+  botStateMap[senderID] = nextState
 }

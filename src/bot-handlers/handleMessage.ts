@@ -2,20 +2,22 @@ import {Bot, BotContext} from 'bot'
 
 import {createReply} from 'bot/create-reply'
 import {debug, wtf} from 'utils/logs'
-import {BotStateMap, makeSetState} from 'bot/state'
+import {botStateMap, BotStateMap, makeSetState} from 'bot/state'
 
 export async function handleMessage(senderID: string, message: any) {
   const {text} = message
   if (!text) return wtf('No text in message!')
 
   const reply = createReply(senderID)
+  const state = botStateMap[senderID]
+
   console.log(`>> Handling Message: ${text} from ${senderID}...`)
 
   try {
     const context: BotContext = {
       sender: senderID,
       reply,
-      state: BotStateMap,
+      state,
       setState: makeSetState(senderID)
     }
 

@@ -24,8 +24,12 @@ export type BotResponse = string | object
 
 export type Question = 'QUANTITY'
 
-export type BotState = {
+export interface BotState {
   asking: Question | false
+}
+
+export type BotStateMap = {
+  [customer: string]: BotState
 }
 
 export interface BotContext {

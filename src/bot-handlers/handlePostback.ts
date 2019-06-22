@@ -4,7 +4,7 @@ import {createReply} from 'bot/create-reply'
 import {performOnboarding} from 'bot/onboarding'
 import {Product} from 'utils/db'
 import {getProductsCarousel} from 'products/getProductsCarousel'
-import {BotStateMap, makeSetState} from 'bot/state'
+import {botStateMap, BotStateMap, makeSetState} from 'bot/state'
 
 interface Postback {
   title: string,
@@ -54,11 +54,12 @@ export async function handlePostback(senderID: string, postback: Postback) {
   debug(`>> Handling Postback: ${title} (${payload})`)
 
   const reply = createReply(senderID)
+  const state = botStateMap[senderID]
 
   const context: BotContext = {
     sender: senderID,
     reply,
-    state: BotStateMap,
+    state,
     setState: makeSetState(senderID)
   }
 
