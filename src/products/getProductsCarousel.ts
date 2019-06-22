@@ -25,12 +25,14 @@ function Card() {
 }
 
 export async function getProductsCarousel() {
+  const elements = Array.from({length: 5}).map(Card)
+
   return {
     'attachment': {
       'type': 'template',
       'payload': {
         'template_type': 'generic',
-        'elements': [...Array(5)].map(Card),
+        elements,
       },
     },
   }

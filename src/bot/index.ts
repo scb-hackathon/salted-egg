@@ -68,7 +68,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
   const rtp = (amount: number) => requestToPay(amount, ctx.sender)
 
-  if (text.includes('/products_list')) {
+  if (text.includes('/list')) {
     return viewProductsList()
   }
 
