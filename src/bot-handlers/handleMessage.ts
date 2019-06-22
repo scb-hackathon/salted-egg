@@ -2,6 +2,7 @@ import {Bot, BotContext} from 'bot'
 
 import {createReply} from 'bot/create-reply'
 import {debug, wtf} from 'utils/logs'
+import {BotStateMap, makeSetState} from 'bot/state'
 
 export async function handleMessage(senderID: string, message: any) {
   const {text} = message
@@ -14,6 +15,8 @@ export async function handleMessage(senderID: string, message: any) {
     const context: BotContext = {
       sender: senderID,
       reply,
+      state: BotStateMap,
+      setState: makeSetState(senderID)
     }
 
     debug('--- BOT START ---')

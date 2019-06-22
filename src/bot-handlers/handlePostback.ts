@@ -4,6 +4,7 @@ import {createReply} from 'bot/create-reply'
 import {performOnboarding} from 'bot/onboarding'
 import {Product} from 'utils/db'
 import {getProductsCarousel} from 'products/getProductsCarousel'
+import {BotStateMap, makeSetState} from 'bot/state'
 
 interface Postback {
   title: string,
@@ -28,7 +29,7 @@ export function parsePostbackAction(payload: string): PostbackAction | false {
 }
 
 export async function executePostbackAction(action: PostbackAction, ctx: BotContext) {
-  const {reply} = ctx
+  const {reply, state, setState} = ctx
   let {type, payload} = action
 
   console.info(`>> Postback Action: ${type} =>`, payload)
@@ -36,6 +37,8 @@ export async function executePostbackAction(action: PostbackAction, ctx: BotCont
   if (type === 'BUY') {
     const {name, price} = payload as Product
     await reply(`${name}ราคา ${price} บาทค่ะ จะซื้อกี่ชิ้นดีคะ?`)
+
+    setState({asking: 'QUANTITY'})
 
     return
   }
@@ -55,6 +58,8 @@ export async function handlePostback(senderID: string, postback: Postback) {
   const context: BotContext = {
     sender: senderID,
     reply,
+    state: BotStateMap,
+    setState: makeSetState(senderID)
   }
 
   if (payload === 'DISPLAY_CATALOGUE_CAROUSEL') {

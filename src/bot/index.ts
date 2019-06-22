@@ -22,10 +22,17 @@ interface ChatMessage {
 
 export type BotResponse = string | object
 
+export type Question = 'QUANTITY'
+
+export type BotState = {
+  asking: Question | false
+}
+
 export interface BotContext {
   sender: string
   reply: (response: BotResponse) => Promise<void>
-  dialogflow?: QueryResult
+  state: BotState,
+  setState: (state: BotState) => void
 }
 
 export function match(regex: RegExp, text: string) {
@@ -37,15 +44,21 @@ export function match(regex: RegExp, text: string) {
 
 export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotResponse> {
   const {text} = message
+  const {sender, state, setState} = ctx
 
-  const rtp = (amount: number) => requestToPay(amount, ctx.sender)
+  const rtp = (amount: number) => requestToPay(amount, sender)
+
+  // TODO(Phoom): Implement + Add Quick Reply
+  if (state.asking === 'QUANTITY') {
+    return 'โอเคค่ะ เอา 100 อันเนาะ'
+  }
 
   if (text.includes('/list')) {
     return viewProductsList()
   }
 
   if (text.includes('/reset')) {
-    resetCart(ctx.sender)
+    resetCart(sender)
 
     return 'Cart is reset! 🔥'
   }
@@ -76,7 +89,7 @@ export async function Bot(message: ChatMessage, ctx: BotContext): Promise<BotRes
 
   if (text.includes('/receipt')) {
     const products: Cart[] = db.get('cart').value()
-    const list = products.filter(p => p.buyer === ctx.sender)
+    const list = products.filter(p => p.buyer === sender)
 
     return buildReceipt(list)
   }
